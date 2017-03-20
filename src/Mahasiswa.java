@@ -8,5 +8,8 @@
  * @author PRAKTIKUM
  */
 public class Mahasiswa {
+    private int nim;
+    
+    
     
 }
