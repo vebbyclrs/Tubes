@@ -10,6 +10,6 @@
 public class Mahasiswa {
     private String nim;
     
-    
+    private String name;
     
 }
