@@ -7,7 +7,7 @@
  *
  * @author PRAKTIKUM
  */
-public class Mahasiswa {
+public class Manusia {
     private String nama;
     private String alamat;
     private String noHp;
