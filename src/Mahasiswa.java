@@ -8,10 +8,31 @@
  * @author PRAKTIKUM
  */
 public class Mahasiswa {
-    private String nim;
-    
-    private String name;
-    
-    
-    private int no;
+    private String nama;
+    private String alamat;
+    private String noHp;
+
+    public void setAlamat(String alm) {
+        alamat = alm;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNoHp(String noHp) {
+        this.noHp = noHp;
+    }
+
+    public String getNoHp() {
+        return noHp;
+    }
 }
