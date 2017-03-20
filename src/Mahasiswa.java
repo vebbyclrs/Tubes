@@ -8,7 +8,7 @@
  * @author PRAKTIKUM
  */
 public class Mahasiswa {
-    private int nim;
+    private String nim;
     
     
     
