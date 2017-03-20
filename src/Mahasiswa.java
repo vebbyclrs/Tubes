@@ -12,4 +12,6 @@ public class Mahasiswa {
     
     private String name;
     
+    
+    private int no;
 }
