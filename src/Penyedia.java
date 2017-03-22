@@ -12,7 +12,10 @@ public class Penyedia {
  private int idPenyedia;
 // private Barang[] daftarBarang;
  private int jumlahBarang;
-
+    
+    /*void addBarang(br barang){
+        
+}*/
     public int getIdPenyedia() {
         return idPenyedia;
     }
