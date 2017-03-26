@@ -11,15 +11,21 @@ package tubes;
  */
 public class Gudang {
     private Barang[]  daftarBarang;
-    private int jumBarang;
+    private int jumBarang = 0;
     private String id;
     private String lokasi;
     
     public void addBarang (Barang br){
-        //belum 
+        if(jumBarang<10){
+            daftarBarang[jumBarang] = br;
+            jumBarang +=1;
+        }
     }
 
     //get barang belum
+    public Barang getBarang(int idx){
+        return daftarBarang[idx];
+    }
     
     public int getJumBarang() {
         return jumBarang;
