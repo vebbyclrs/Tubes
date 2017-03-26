@@ -1,3 +1,6 @@
+
+import tubes.Barang;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,17 +13,15 @@
  */
 public class Penyedia {
  private int idPenyedia;
-// private Barang[] daftarBarang;
- private int jumlahBarang;
+ private Barang[] daftarBarang = new Barang[9];
+ private int jumlahBarang = 0;
     
-    /*void addBarang(br barang){
-        
-}*/
-    public int getIdPenyedia() {
+
+    public int getId() {
         return idPenyedia;
     }
 
-    public void setIdPenyedia(int idPenyedia) {
+    public void setId(int idPenyedia) {
         this.idPenyedia = idPenyedia;
     }
 
@@ -28,9 +29,19 @@ public class Penyedia {
         return jumlahBarang;
     }
 
-    public void setJumlahBarang(int jumlahBarang) {
-        this.jumlahBarang = jumlahBarang;
+  /* public void setJumlahBarang(int jumlahBarang) {
+    //    this.jumlahBarang = jumlahBarang;
+    }*/
+    
+    public void addBarang(Barang br) {
+        if (jumlahBarang<10) {
+            daftarBarang[jumlahBarang] = br;
+            jumlahBarang+=1;
+        }
     }
- 
+    
+    public Barang getBarang(int idx){
+        return daftarBarang[idx];
+    }
  
 }
