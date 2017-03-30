@@ -14,15 +14,27 @@ public class Gudang {
     private int jumBarang = 0;
     private String id;
     private String lokasi;
+
+    public Gudang(String id, String lokasi) {
+        this.id=id;
+        this.lokasi=lokasi;
+        daftarBarang = new Barang [20];
+    }
+
+    //overloading
+    public Gudang() {
+        daftarBarang=new Barang[20];
+    }
     
     public void addBarang (Barang br){
-        if(jumBarang<10){
+        if(jumBarang<20){
             daftarBarang[jumBarang] = br;
             jumBarang +=1;
+        }else {
+            System.out.println("Tidak bisa menambahkan barang ke gudang");
         }
     }
 
-    //get barang belum
     public Barang getBarang(int idx){
         return daftarBarang[idx];
     }
@@ -46,6 +58,4 @@ public class Gudang {
     public void setLokasi(String lokasi) {
         this.lokasi = lokasi;
     }
-    
-    
 }
