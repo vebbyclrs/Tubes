@@ -11,12 +11,19 @@ import tubes.Barang;
  *
  * @author Endriawan
  */
-public class Penyedia {
+public class Penyedia extends Manusia {
  private int idPenyedia;
- private Barang[] daftarBarang = new Barang[9];
+ private Barang[] daftarBarang;
  private int jumlahBarang = 0;
-    
 
+    public Penyedia(int idPenyedia, String namaPenyedia, String alamat) {
+        this.idPenyedia = idPenyedia;
+        super.setNama(namaPenyedia);
+        super.setAlamat(alamat);
+        daftarBarang = new Barang[20];
+    }
+    
+    
     public int getId() {
         return idPenyedia;
     }
@@ -28,16 +35,15 @@ public class Penyedia {
     public int getJumlahBarang() {
         return jumlahBarang;
     }
-
-  /* public void setJumlahBarang(int jumlahBarang) {
-    //    this.jumlahBarang = jumlahBarang;
-    }*/
     
     public void addBarang(Barang br) {
-        if (jumlahBarang<10) {
+        if (jumlahBarang<20) {
             daftarBarang[jumlahBarang] = br;
             jumlahBarang+=1;
+        } else {
+            System.out.println("!!Penambahan gagal. Maksimum barang tercapai");
         }
+       
     }
     
     public Barang getBarang(int idx){

@@ -15,6 +15,14 @@ public class Barang {
     private double harga;
     private int stock;
 
+    public Barang(String id, String nama, double harga, int stock) {
+        this.id = id;
+        this.nama = nama;
+        this.harga = harga;
+        this.stock = stock;
+    }
+
+    
     public String getId() {
         return id;
     }

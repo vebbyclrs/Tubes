@@ -10,6 +10,8 @@
  */
 public class Petugas extends Manusia {
     private int idPetugas;
+    private String email;
+    private String pass;
 
     public Petugas(int idPetugas, String nama) {
         this.idPetugas = idPetugas;
@@ -22,7 +24,21 @@ public class Petugas extends Manusia {
 
     public int getIdPetugas() {
         return idPetugas;
+    } 
+
+    public void setEmail(String email) {
+        this.email = email;
     }
-    
-    
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public String getPass() {
+        return pass;
+    }
 }
