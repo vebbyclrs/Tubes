@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tubes;
+package Controller;
 
 /**
  *
  * @author PRAKTIKUM
  */
-public class Tubes {
+public class Main {
 
     /**
      * @param args the command line arguments
