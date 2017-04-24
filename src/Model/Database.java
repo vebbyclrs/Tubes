@@ -19,6 +19,9 @@ public class Database {
     private Connection connection;
     private Statement statement;
     
+    public void savePenyedia(Penyedia n){
+        
+    }
 //    public void connect () {
 //        try {
 //            
