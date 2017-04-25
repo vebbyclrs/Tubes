@@ -13,15 +13,14 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author asus
+ * @author vebbyclrs
+ * 
  */
-public class Database {
+public class DatabaseConnection {
     private Connection connection;
     private Statement statement;
     
-    public void savePenyedia(Penyedia n){
-        
-    }
+    
 //    public void connect () {
 //        try {
 //            
@@ -31,7 +30,7 @@ public class Database {
 //            } catch (Exception e) {
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
 }

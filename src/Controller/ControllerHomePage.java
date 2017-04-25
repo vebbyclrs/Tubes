@@ -8,7 +8,7 @@ import Model.Gudang;
 import Model.Barang;
 import Model.Penyedia;
 import View.HomePage;
-import Model.Database;
+import Model.DatabaseConnection;
 import java.util.ArrayList;
 /**
  *
@@ -18,7 +18,7 @@ public class ControllerHomePage {
     ArrayList<Penyedia> daftarPenyedia;
     ArrayList<Barang> daftarBarang;
     ArrayList<Gudang> daftarGudang;
-    Database db;
+    DatabaseConnection db;
     
     public void addPenyedia(int idPenyedia ,String namaPenyedia ,String Alamat) {
         //disini nanti di taruh if karena apa lah gk ngerti,
