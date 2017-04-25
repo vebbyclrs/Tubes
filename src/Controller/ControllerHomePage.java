@@ -9,12 +9,16 @@ import Model.Barang;
 import Model.Penyedia;
 import View.HomePage;
 import Model.DatabaseConnection;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 /**
  *
  * @author Endriawan
  */
-public class ControllerHomePage {
+public class ControllerHomePage implements ActionListener, KeyListener{
     ArrayList<Penyedia> daftarPenyedia;
     ArrayList<Barang> daftarBarang;
     ArrayList<Gudang> daftarGudang;
@@ -25,6 +29,26 @@ public class ControllerHomePage {
         //isi voidnya klo masih kurang tambahin aja ya
         Penyedia n = new Penyedia(idPenyedia, namaPenyedia, Alamat);
         daftarPenyedia.add(n);
-        db.savePenyedia(n);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        //Kalo pencet delete gimana?
+        //Kalo pencet F2(?) gimana?
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        
     }
 }
