@@ -24,7 +24,7 @@ public class DatabaseConnection
     private Connection conn;
     private Statement sta;
 
-    public void Connect()
+    public void connect()
     {
         try
         {
@@ -52,7 +52,7 @@ public class DatabaseConnection
     
     
 
-    public boolean Manipulate(String query)
+    public boolean manipulate(String query)
     {
         boolean berhasil = false;
         try

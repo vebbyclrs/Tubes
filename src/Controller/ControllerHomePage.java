@@ -24,7 +24,7 @@ public class ControllerHomePage implements ActionListener, KeyListener{
     ArrayList<Gudang> daftarGudang;
     DatabaseConnection db;
     
-    public ControllerHomePage
+    
     
     public void addPenyedia(int idPenyedia ,String namaPenyedia ,String Alamat) {
         //disini nanti di taruh if karena apa lah gk ngerti,

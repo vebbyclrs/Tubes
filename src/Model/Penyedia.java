@@ -15,10 +15,11 @@ public class Penyedia extends Manusia {
  private Barang[] daftarBarang;
  private int jumlahBarang = 0;
 
-    public Penyedia(int idPenyedia, String namaPenyedia, String alamat) {
+    public Penyedia(int idPenyedia, String namaPenyedia, String alamat, String noHp) {
         this.idPenyedia = idPenyedia;
         super.setNama(namaPenyedia);
         super.setAlamat(alamat);
+        super.setNoHp(noHp);
         daftarBarang = new Barang[20];
     }
     
