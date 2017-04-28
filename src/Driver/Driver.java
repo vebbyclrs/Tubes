@@ -5,13 +5,15 @@
  */
 package Driver;
 import Controller.ControllerHomePage;
+import View.HomePage;
 import Model.Aplikasi;
 /**
- *
+ *asa
  * @author Endriawan
  */
 public class Driver {
     public static void main(String[] args) {
-        
+        Aplikasi app =  new Aplikasi();
+        new ControllerHomePage(app);
     }
 }

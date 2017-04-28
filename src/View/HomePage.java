@@ -5,6 +5,7 @@
  */
 package View;
 
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -43,6 +44,11 @@ public class HomePage extends javax.swing.JFrame {
     }
     public void setTfNoHP (String hp){
         tfNoHP.setText(hp);
+    }
+    
+    public void addListener(ActionListener e){
+        btnAddP.addActionListener(e);
+        btnBarang.addActionListener(e);
     }
     /**
      * This method is called from within the constructor to initialize the form.

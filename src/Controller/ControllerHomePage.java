@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Controller;
+import Model.Aplikasi;
 import Model.Gudang;
 import Model.Barang;
 import Model.Penyedia;
@@ -19,20 +20,17 @@ import java.util.ArrayList;
  * @author Endriawan
  */
 public class ControllerHomePage implements ActionListener, KeyListener{
-    ArrayList<Penyedia> daftarPenyedia;
-    ArrayList<Barang> daftarBarang;
-    ArrayList<Gudang> daftarGudang;
-    DatabaseConnection db;
+    Aplikasi model;
+    HomePage view;
     
-    
-    
-    public void addPenyedia(int idPenyedia ,String namaPenyedia ,String Alamat) {
-        //disini nanti di taruh if karena apa lah gk ngerti,
-        //isi voidnya klo masih kurang tambahin aja ya
-        Penyedia n = new Penyedia(idPenyedia, namaPenyedia, Alamat);
-        daftarPenyedia.add(n);
+    public ControllerHomePage(Aplikasi model){
+        this.model = model;
+        view = new HomePage();
+        view.setVisible(true);
+        view.addListener(this);
     }
-
+    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

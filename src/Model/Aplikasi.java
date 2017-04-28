@@ -46,12 +46,13 @@ public class Aplikasi {
             }
         } catch (Exception e) {
         }
+        return null;
     }
     
-    public void addPenyedia (int idPenyedia, String namaPenyedia, String alamat) {
+    public void addPenyedia (int idPenyedia, String namaPenyedia, String alamat, String noHP) {
         //belum dikasih error corectionnya
         
-        Penyedia p = new Penyedia(idPenyedia, namaPenyedia, alamat);
+        Penyedia p = new Penyedia(idPenyedia, namaPenyedia, alamat, noHP);
         daftarPenyedia.add(p);
         //db.savePenyedia;
     }
@@ -64,8 +65,8 @@ public class Aplikasi {
         return null;
         
     }
-    public void addBarangPenyedia(){
-       
+    public void addBarangPenyedia(int idPenyedia){
+       Penyedia p = getPenyedia(idPenyedia);
        
     }
     
