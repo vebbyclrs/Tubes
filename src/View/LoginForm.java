@@ -1,5 +1,10 @@
 package View;
 
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -106,10 +111,31 @@ public class LoginForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_tfUserNameActionPerformed
-
+    public void setActionListener(ActionListener a){
+        btnLogin.addActionListener(a);
+        btnDaftar.addActionListener(a);
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
+
+    public JButton getBtnDaftar() {
+        return btnDaftar;
+    }
+
+    public JButton getBtnLogin() {
+        return btnLogin;
+    }
+
+    public String getjPasswordField1() {
+        return jPasswordField1.getText();
+    }
+
+    public String getTfUserName() {
+        return tfUserName.getText();
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
