@@ -50,10 +50,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="tabPenyedia" max="32767" attributes="0"/>
-          </Group>
+          <Component id="tabPenyedia" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -82,7 +79,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" pref="147" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" pref="139" max="32767" attributes="0"/>
                           <Component id="jScrollPane4" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -95,16 +92,16 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jPanel5" max="32767" attributes="0"/>
                                   <Component id="jScrollPane2" max="32767" attributes="0"/>
+                                  <Component id="jPanel5" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jScrollPane4" max="32767" attributes="0"/>
-                                  <Component id="jPanel2" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jScrollPane4" min="-2" pref="309" max="-2" attributes="0"/>
+                                  <Component id="jPanel2" min="-2" pref="219" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -189,8 +186,12 @@
             <Container class="javax.swing.JPanel" name="jPanel5">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                    <EtchetBorder/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Tambah penyedia barang">
+                      <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -225,6 +226,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="tfIdP" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -246,7 +248,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnAddP" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="55" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -312,8 +314,12 @@
             <Container class="javax.swing.JPanel" name="jPanel2">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                    <EtchetBorder/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Tambah barang pada penyedia">
+                      <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -357,7 +363,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="tfIdPenyediaB" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -392,17 +398,17 @@
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="tfIdPenyediaB">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField5"/>
+                    <Property name="text" type="java.lang.String" value="tfIdPenyediaB"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfIdBarang">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField6"/>
+                    <Property name="text" type="java.lang.String" value="tfIdBarang"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfNamaBarang">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField7"/>
+                    <Property name="text" type="java.lang.String" value="tfNamaBarang"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
@@ -422,7 +428,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfStock">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField8"/>
+                    <Property name="text" type="java.lang.String" value="tfStock"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
@@ -437,7 +443,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfHarga">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField9"/>
+                    <Property name="text" type="java.lang.String" value="tfHarga"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBarang">
@@ -478,12 +484,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel7" alignment="1" min="-2" pref="230" max="-2" attributes="0"/>
-                          <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                              <Component id="jPanel7" min="-2" pref="234" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jPanel6" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane6" alignment="0" pref="153" max="32767" attributes="0"/>
+                          <Component id="jScrollPane6" alignment="0" pref="145" max="32767" attributes="0"/>
                           <Component id="jScrollPane7" alignment="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -496,17 +505,22 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane5" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane6" pref="186" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane7" min="-2" pref="226" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane5" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jScrollPane6" min="-2" pref="157" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jScrollPane7" min="-2" pref="317" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -590,8 +604,12 @@
             <Container class="javax.swing.JPanel" name="jPanel6">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                    <EtchetBorder/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Tambahkan gudang">
+                      <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -666,7 +684,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfLokasiGudang">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField2"/>
+                    <Property name="text" type="java.lang.String" value="tfLokasiGudang"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -674,8 +692,12 @@
             <Container class="javax.swing.JPanel" name="jPanel7">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                    <EtchetBorder/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Tambahkan barang pada gudang">
+                      <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -697,7 +719,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="tfStockG" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tdNamaBarangG" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tfNamaBarangG" alignment="0" max="32767" attributes="0"/>
                               <Component id="tfIdBarangG" alignment="0" max="32767" attributes="0"/>
                               <Component id="tfIdGudangB" alignment="0" max="32767" attributes="0"/>
                               <Component id="tfHargaG" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
@@ -726,7 +748,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="tdNamaBarangG" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfNamaBarangG" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -749,17 +771,17 @@
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="tfIdGudangB">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField5"/>
+                    <Property name="text" type="java.lang.String" value="tfIdGudangB"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfIdBarangG">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField6"/>
+                    <Property name="text" type="java.lang.String" value="tfIdGudangG"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tdNamaBarangG">
+                <Component class="javax.swing.JTextField" name="tfNamaBarangG">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField7"/>
+                    <Property name="text" type="java.lang.String" value="tfNamaBarangG"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel14">
@@ -779,7 +801,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfStockG">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField8"/>
+                    <Property name="text" type="java.lang.String" value="tfStockG"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel17">
@@ -794,7 +816,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfHargaG">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField9"/>
+                    <Property name="text" type="java.lang.String" value="tfHargaG"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBarang2">
