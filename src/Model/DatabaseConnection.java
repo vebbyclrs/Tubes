@@ -29,7 +29,7 @@ public class DatabaseConnection
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/db_tp", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/db_tubes", "root", "");
             sta = conn.createStatement();
         } catch (Exception ex)
         {

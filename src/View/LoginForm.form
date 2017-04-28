@@ -76,11 +76,17 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Username"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfUserNameActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnDaftar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Daftar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDaftarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLogin">
       <Properties>

@@ -41,8 +41,18 @@ public class LoginForm extends javax.swing.JFrame {
 
         tfUserName.setForeground(new java.awt.Color(153, 153, 153));
         tfUserName.setText("Username");
+        tfUserName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfUserNameActionPerformed(evt);
+            }
+        });
 
         btnDaftar.setText("Daftar");
+        btnDaftar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDaftarActionPerformed(evt);
+            }
+        });
 
         btnLogin.setText("Login");
 
@@ -85,9 +95,22 @@ public class LoginForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void btnDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarActionPerformed
+        // TODO add your handling code here:
+        SignUpPegawai daftar = new SignUpPegawai();
+        daftar.setVisible(true);
+    }//GEN-LAST:event_btnDaftarActionPerformed
+
+    private void tfUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUserNameActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tfUserNameActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDaftar;
@@ -97,3 +120,4 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JTextField tfUserName;
     // End of variables declaration//GEN-END:variables
 }
+
