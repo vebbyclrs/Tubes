@@ -22,7 +22,10 @@ public class Penyedia extends Manusia {
         super.setNoHp(noHp);
         daftarBarang = new Barang[20];
     }
-    
+
+    public Penyedia() {
+        daftarBarang = new Barang[20];
+    }
     
     public int getId() {
         return idPenyedia;
