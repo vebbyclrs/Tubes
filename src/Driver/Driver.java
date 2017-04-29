@@ -8,7 +8,7 @@ import Controller.ControllerHomePage;
 import View.HomePage;
 import Model.Aplikasi;
 /**
- *asa
+ *
  * @author Endriawan
  */
 public class Driver {

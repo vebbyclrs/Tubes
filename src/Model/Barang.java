@@ -22,6 +22,10 @@ public class Barang {
         this.stock = stock;
     }
 
+    public Barang() {
+    }
+    
+
     
     public String getId() {
         return id;

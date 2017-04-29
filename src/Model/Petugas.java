@@ -20,6 +20,16 @@ public class Petugas extends Manusia {
         super.setNama(nama);        
     }
 
+    public Petugas(int idPetugas, String nama, String alamat, String noHp, String email,String password) {
+        this.idPetugas = idPetugas;
+        this.email = email;
+        pass = password;
+        super.setAlamat(alamat);
+        super.setNama(nama);
+        super.setNoHp(noHp);
+    }
+    
+
     public void setId(int idPetugas) {
         this.idPetugas = idPetugas;
     }
