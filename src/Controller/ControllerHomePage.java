@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Endriawan
@@ -22,7 +23,6 @@ import java.util.ArrayList;
 public class ControllerHomePage implements ActionListener, KeyListener{
     Aplikasi model;
     HomePage view;
-    
     public ControllerHomePage(Aplikasi model){
         this.model = model;
         view = new HomePage();
@@ -33,7 +33,17 @@ public class ControllerHomePage implements ActionListener, KeyListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Object source = e.getSource();
+        if (source.equals(view.getBtnPenyedia())){
+            Penyedia p = new Penyedia();
+            p.setNama(view.getTfNama());
+            p.setId(0);
+            p.setAlamat(view.getTfAlamat());
+            p.setNoHp(view.getTfNoHP());
+            model.addPenyedia(p);
+        }
+        //eji masih bingung error terus sok di bantu
     }
 
     @Override
