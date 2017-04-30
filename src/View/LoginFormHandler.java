@@ -12,16 +12,21 @@ package View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import Model.*;
+import View.LoginForm;
 
 public class LoginFormHandler implements ActionListener {
+    
+    private Aplikasi model;
     private LoginForm view;
+    
 
     public LoginFormHandler() {
         this.view = view;
         view.setVisible(true);
         view.setActionListener(this);
     }
-   
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Object click = e.getSource();

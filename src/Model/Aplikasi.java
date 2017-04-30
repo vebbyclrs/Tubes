@@ -6,15 +6,14 @@
 package Model;
 
 import java.util.ArrayList;
-import View.HomePage;
 import java.sql.ResultSet;
-import javax.sql.rowset.CachedRowSet;
 
 /**
  *
  * @author Endriawan
  */
 public class Aplikasi {
+    //TEST BELOM COMMIT
 
     /**
      * ====KETERANGAN NAMA METHOD DALAM CLASS INI====
@@ -28,48 +27,49 @@ public class Aplikasi {
 
     ArrayList<Penyedia> daftarPenyedia;
     ArrayList<Barang> daftarBarang;
+    ArrayList<Petugas> daftarPetugas;
     DatabaseConnection db;
 
     public Aplikasi() {
         db = new DatabaseConnection();
+        loadPetugas();
     }
 
     /*Area untuk HomePage*/
-    public boolean addPenyedia(Penyedia p) {
+    public void addPenyedia(Penyedia p) /*DONE*/ {
+        //tidak ada kemungkinan bahwa idPenyedia sudah ada karena
+        //saat menyimpan data, id increment
         db.connect();
-        boolean berhasil = db.manipulate("insert into penyedia (idpenyedia,nama,alamat,nohp,jumbarang) "
-                + "values ('" + p.getId() + "','"
-                + p.getNama() + "','"
-                + p.getAlamat() + "','"
-                + p.getNoHp() + "','"
-                + p.getJumlahBarang() + "');");
+        db.savePenyedia(p);
+        daftarPenyedia.add(p);
         db.disconnect();
-        return berhasil;
     }
 
-    public ArrayList<Penyedia> loadPenyedia() /*done, = loadPenyedia*/ {
-        db.connect();
-        ResultSet rs = db.getData("select idpenyedia,nama,alamat,nohp,jumbarang from penyedia");
+    public ArrayList<Penyedia> loadPenyedia() /*DONE, = loadPenyedia*/ {
         ArrayList<Penyedia> arrPenyedia = new ArrayList<>();
+        db.connect();
+        String query = "select idpenyedia,nama,alamat,nohp,jumbarang from penyedia";
+        ResultSet rs = db.getData(query);
         try {
             while (rs.next()) {
                 Penyedia p = new Penyedia(rs.getInt("idpenyedia"), rs.getString("nama"), rs.getString("alamat"), rs.getString("nohp"));
-
+                arrPenyedia.add(p);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("terjadi kesalahan saat load penyedia");
         }
         db.disconnect();
         return arrPenyedia;
     }
 
-    public boolean addBarang(Barang b) /*Done*/ {
+    public boolean addBarangPenyedia(Barang b, int idPenyedia) /*Done*/ {
         db.connect();
-        boolean berhasil = db.manipulate("insert into barang (idbarang,nama,harga,Stock) "
+        boolean berhasil = db.manipulate("insert into barang (idbarang,nama,harga,Stock,idpenyedia) "
                 + "values ('" + b.getId() + "','"
                 + b.getNama() + "','"
                 + b.getHarga() + "','"
-                + b.getStock() + "');");
+                + b.getStock() + "','"
+                + idPenyedia +"');");
         
         db.disconnect();
         return berhasil;
@@ -85,7 +85,7 @@ public class Aplikasi {
                 arrBarang.add(b);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("Terjadi kesalahan saat load barang");
         }
         db.disconnect();
         return arrBarang; 
@@ -94,23 +94,21 @@ public class Aplikasi {
     public boolean addGudang(Gudang b)/*done*/ {
         db.connect();
         boolean berhasil = db.manipulate(
-                "insert into gudang (id,lokasi,jumBarang) "
+                "insert into gudang (idgudang,lokasi,jumBarang) "
                         + "values ('" + b.getId() +"',"
                         + "'"+b.getLokasi() + "',"
                         + "'"+ b.getJumBarang()+ "');");
         db.disconnect();
         return berhasil;
-
-        //DOING BY VEBBY
     }
 
     public ArrayList<Gudang> loadGudang() /*done*/ {
         db.connect();
         ArrayList<Gudang> arrGudang = new ArrayList<>();
-        ResultSet rs = db.getData("select id,lokasi,jumbarang from gudang");
+        ResultSet rs = db.getData("select idgudang,lokasi,jumbarang from gudang");
         try {
             while (rs.next()) {
-                Gudang g = new Gudang(rs.getString("id"), "lokasi");
+                Gudang g = new Gudang(rs.getString("idgudang"), "lokasi");
                 arrGudang.add(g);
             }
         } catch (Exception e) {
@@ -131,8 +129,6 @@ public class Aplikasi {
                 "','"+b.getPass()+"');");
         db.disconnect();
         return berhasil;
-
-        //DOING BY VEBBY
     }
 
     public ArrayList<Petugas> loadPetugas() /*done*/{
@@ -157,45 +153,65 @@ public class Aplikasi {
         return arrPetugas;
     }
 
-    public Penyedia getPenyedia(int idPenyedia) {
-        /*
-        alur: fungsi akan mengeluarkan semua data penyedia dengan id=idpenyedia
-        data penyedia tsb disimpan dalam objek p
-        kemudian akan dicari dalam tabel barang: barang mana saja yang punya barang.idpenyedia=p.idpenyedia
-          yang kemudian akan di simpan dalam resultsetBarang
-        isi dari result set barang tadi akan di simpan ke dalam array penyedia.barang[] untuk kemudian ditampilkan
-        */
-        db.connect();
-        Penyedia p = new Penyedia();
-        ResultSet rs = db.getData("Select * from Penyedia where nim = '"+idPenyedia+"'");
-        try {
-            if (rs.first()) {
-                p.setAlamat(rs.getString("alamat"));
-                p.setId(rs.getInt("idpenyedia"));
-                p.setNama(rs.getString("nama"));
-                p.setNoHp(rs.getString("nohp"));
-                
-                ResultSet rsBarang = db.getData("select idbarang, idpenyedia, id, nama, harga, stock "
-                        + "where idpenyedia='"+idPenyedia+"'");
-                
-                while (rsBarang.next()) {
-                    if (p.getJumlahBarang()<=20) {
-                        Barang b = new Barang(rs.getString("idbarang"),
-                                rs.getString("nama"),
-                                rs.getDouble("harga"), 
-                                rs.getInt("stock"));
-                        p.addBarang(b);                            
-                    }
-                }
+//    public Penyedia getPenyedia(int idPenyedia) /*BELOM*/{
+//        /*
+//        alur: fungsi akan mengeluarkan semua data penyedia dengan id=idpenyedia
+//        data penyedia tsb disimpan dalam objek p
+//        kemudian akan dicari dalam tabel barang: barang mana saja yang punya barang.idpenyedia=p.idpenyedia
+//          yang kemudian akan di simpan dalam resultsetBarang
+//        isi dari result set barang tadi akan di simpan ke dalam array penyedia.barang[] untuk kemudian ditampilkan
+//        */
+//        db.connect();
+//        Penyedia p = new Penyedia();
+//        ResultSet rs = db.getData("Select * from Penyedia where nim = '"+idPenyedia+"'");
+//        try {
+//            if (rs.first()) {
+//                p.setAlamat(rs.getString("alamat"));
+//                p.setId(rs.getInt("idpenyedia"));
+//                p.setNama(rs.getString("nama"));
+//                p.setNoHp(rs.getString("nohp"));
+//                
+//                ResultSet rsBarang = db.getData("select idbarang, idpenyedia, id, nama, harga, stock "
+//                        + "where idpenyedia='"+idPenyedia+"'");
+//                
+//                while (rsBarang.next()) {
+//                    if (p.getJumlahBarang()<=20) { 
+//                        Barang b = new Barang(rs.getString("idbarang"), 
+//                                rs.getString("nama"),
+//                                rs.getDouble("harga"), 
+//                                rs.getInt("stock"));
+//                        p.addBarang(b);                            
+//                    }
+//                }
+//            }
+//            
+//        } catch (Exception e) {
+//        }
+//        
+//        
+//        db.disconnect();
+//        return p;
+//    }
+//    
+    public Barang getBarang (String  idBarang) {
+        for (Barang brg : daftarBarang) {
+            if (brg.getId().equals(idBarang)) { 
+                return brg;
             }
-            
-        } catch (Exception e) {
         }
-        
-        
-        db.disconnect();
-        return p;
+        return null;
     }
+    
+    public Petugas getPetugas (String idPetugas) {
+        String query = "select * from petugas where idpetugas='"+idPetugas+"'"
+        ResultSet rs = db.getData(query);
+        for (Petugas p : daftarPetugas) {
+            if () {
+                
+            }
+        }
+    }
+}
     /**
      * bikin method returnnya penyedia parameter :id penyedia
      *
@@ -204,4 +220,3 @@ public class Aplikasi {
      */
 
     /*Area Untuk LoginForm*/
-}

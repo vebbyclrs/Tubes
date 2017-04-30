@@ -50,8 +50,6 @@ public class DatabaseConnection
         }
     }
     
-    
-
     public boolean manipulate(String query)
     {
         boolean berhasil = false;
@@ -86,6 +84,27 @@ public class DatabaseConnection
         return rs;
     }
     
+    public void savePenyedia (Penyedia p) {
+        try {
+            String query = "insert into penyedia (idpenyedia,nama,alamat,nohp,jumbarang) "
+                    + "values ('" + p.getId() + "','"
+                    + p.getNama() + "','"
+                    + p.getAlamat() + "','"
+                    + p.getNoHp() + "','"
+                    + p.getJumlahBarang() + "');";
+            sta.execute(query,Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = sta.getGeneratedKeys();
+            if (rs.next()) {
+                int generatedId = rs.getInt(1);
+                p.setId(generatedId);
+                
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Terjadi kesalahan saat menambahkan penyedia");
+        }        
+        
+    }
     
-
+    
+    
 }

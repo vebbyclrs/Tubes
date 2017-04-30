@@ -53,8 +53,7 @@ public class ControllerHomePage implements ActionListener, KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        //Kalo pencet delete gimana?
-        //Kalo pencet F2(?) gimana?
+        
     }
 
     @Override

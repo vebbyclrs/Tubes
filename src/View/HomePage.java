@@ -24,7 +24,7 @@ public class HomePage extends javax.swing.JFrame {
      //Untuk yang Tambah Penyedia di Tab Data Barang Penyedia
 
     public JButton getBtnPenyedia() {
-        return btnAddP;
+        return btnAddPenyedia;
     }
     
     public String getTfAlamat() {
@@ -47,9 +47,35 @@ public class HomePage extends javax.swing.JFrame {
     }
     
     public void addListener(ActionListener e){
-        btnAddP.addActionListener(e);
+        btnAddPenyedia.addActionListener(e);
         btnBarang.addActionListener(e);
     }
+    
+    public void reset () {
+        tfAlamat.setText("");
+        tfHarga.setText("");
+        tfHargaG.setText("");
+        tfIdBarang.setText("");
+        tfIdBarangG.setText("");
+        tfIdG.setText("");
+        tfIdGudangB.setText("");
+        tfIdP.setText("");
+        tfIdPenyediaB.setText("");
+        tfLokasiGudang.setText("");
+        tfNama.setText("");
+        tfNamaBarang.setText("");
+        tfNamaBarangG.setText("");
+        tfNoHP.setText("");
+        tfStock.setText("");
+        tfStockG.setText("");
+    }
+    public void addActionListener (ActionListener e) {
+        btnAddGudang.addActionListener(e);
+        btnAddPenyedia.addActionListener(e);
+        btnBarang.addActionListener(e);
+        btnBarang2.addActionListener(e);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,7 +101,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        btnAddP = new javax.swing.JButton();
+        btnAddPenyedia = new javax.swing.JButton();
         tfNama = new javax.swing.JTextField();
         tfAlamat = new javax.swing.JTextField();
         tfNoHP = new javax.swing.JTextField();
@@ -170,7 +196,12 @@ public class HomePage extends javax.swing.JFrame {
 
         jLabel5.setText("No HP");
 
-        btnAddP.setText("Tambah Penyedia");
+        btnAddPenyedia.setText("Tambah Penyedia");
+        btnAddPenyedia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddPenyediaActionPerformed(evt);
+            }
+        });
 
         tfNama.setText("tfNama");
         tfNama.addActionListener(new java.awt.event.ActionListener() {
@@ -208,7 +239,7 @@ public class HomePage extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(btnAddP)
+                .addComponent(btnAddPenyedia)
                 .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -231,7 +262,7 @@ public class HomePage extends javax.swing.JFrame {
                     .addComponent(tfNoHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAddP)
+                .addComponent(btnAddPenyedia)
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
@@ -577,6 +608,10 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfAlamatActionPerformed
 
+    private void btnAddPenyediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPenyediaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddPenyediaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -614,7 +649,7 @@ public class HomePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddGudang;
-    private javax.swing.JButton btnAddP;
+    private javax.swing.JButton btnAddPenyedia;
     private javax.swing.JButton btnBarang;
     private javax.swing.JButton btnBarang2;
     private javax.swing.JCheckBox jCheckBox1;
