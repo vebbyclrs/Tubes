@@ -42,7 +42,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Component id="btnSignUp" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnDaftar" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="tfNama" max="32767" attributes="0"/>
                           <Component id="tfId" max="32767" attributes="0"/>
@@ -94,7 +94,7 @@
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnSignUp" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnDaftar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="29" max="32767" attributes="0"/>
@@ -162,7 +162,7 @@
         <Property name="text" type="java.lang.String" value="jPasswordField1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSignUp">
+    <Component class="javax.swing.JButton" name="btnDaftar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Daftar"/>
       </Properties>

@@ -15,9 +15,13 @@ import View.HomePage;
 import View.SignUpPegawai;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import sun.security.pkcs11.Secmod;
 
-public class ControllerLoginForm implements ActionListener{
+
+
+public class ControllerLoginForm implements ActionListener, KeyListener {
 
     private LoginForm loginFrame;
     private ControllerSignUp daftarFrame;
@@ -29,42 +33,47 @@ public class ControllerLoginForm implements ActionListener{
         loginFrame = new LoginForm();
         loginFrame.setLocationRelativeTo(null);
         loginFrame.setVisible(true);
+        loginFrame.setKeyListener(this);
         loginFrame.setActionListener(this); //add action listener utk semua button
     }
-    
-    private void btnDaftarActionPerformed (ActionEvent ae) {
-        loginFrame.dispose();
-        new ControllerSignUp();
+
+    private void btnDaftarActionPerformed(ActionEvent ae) {
+        loginFrame.setVisible(false);
+        daftarFrame = new ControllerSignUp();
     }
-    
+
+    private void btnLoginActionPerformed(ActionEvent ae) {
+        String email = loginFrame.getTfEmail().getText();
+        String password = loginFrame.getTfPassword().getText();
+
+        try {
+            Petugas p = apps.getPetugasByEmail(email);
+            if (p == null) {
+                loginFrame.showMessage("Email salah");
+            } else {
+                if (!p.getPass().equals(password)) {
+                    loginFrame.showMessage("Password salah");
+                } else { //masuk gan
+//                            daftarFrame = new ControllerSignUp();
+                    loginFrame.setVisible(false);
+                    homeFrame = new ControllerHomePage();
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(loginFrame.getBtnDaftar())) {
             btnDaftarActionPerformed(e);
         }
         if (e.getSource().equals(loginFrame.getBtnLogin())) {
-            String email = loginFrame.getTfEmail().getText();
-            String password = loginFrame.getTfPassword().getText();
-            
-            try {
-                Petugas p = apps.getPetugasByEmail(email);
-                if (p==null) {
-                    loginFrame.showMessage("Email salah");
-                } else {
-                     if (! p.getPass().equals(password)) {
-                         loginFrame.showMessage("Password salah");
-                     } else { //masuk gan
-//                            daftarFrame = new ControllerSignUp();
-                            loginFrame.setVisible(false);
-                            homeFrame = new ControllerHomePage();
-                     }
-                }
-                
-            } catch (Exception ae) {
-                throw new IllegalArgumentException("Terjadi kesalahan saat login");
-            }
+            btnLoginActionPerformed(e);
         }
-            
+
 //            Petugas p = apps.getPetugasByEmail(email);
 //            if (p==null) {
 //               throw new IllegalArgumentException("Email tidak ditemukan");
@@ -77,12 +86,29 @@ public class ControllerLoginForm implements ActionListener{
 //                    loginFrame.dispose();
 //                }
 //            }
-        
     }
-       /**
-        * kalo pencet daftar bakal langsung pindah ke sign up
-        * , udah di atur d viewnya
-        */
-    
-    
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getSource().equals(loginFrame.getTfPassword())) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                btnLoginActionPerformed(null);
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+    /**
+     * kalo pencet daftar bakal langsung pindah ke sign up , udah di atur d
+     * viewnya
+     */
+
 }
