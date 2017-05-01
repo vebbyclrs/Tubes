@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,19 +14,18 @@ package Model;
  */
 public class Penyedia extends Manusia {
  private int idPenyedia;
- private Barang[] daftarBarang;
- private int jumlahBarang = 0;
+ private ArrayList<Barang> daftarBarang;
 
     public Penyedia(int idPenyedia, String namaPenyedia, String alamat, String noHp) {
         this.idPenyedia = idPenyedia;
         super.setNama(namaPenyedia);
         super.setAlamat(alamat);
         super.setNoHp(noHp);
-        daftarBarang = new Barang[20];
+        daftarBarang = new ArrayList<>();
     }
 
     public Penyedia() {
-        daftarBarang = new Barang[20];
+        daftarBarang = new ArrayList<>();
     }
     
     public int getId() {
@@ -36,21 +37,15 @@ public class Penyedia extends Manusia {
     }
 
     public int getJumlahBarang() {
-        return jumlahBarang;
+        return daftarBarang.size();
     }
     
     public void addBarang(Barang br) {
-        if (jumlahBarang<20) {
-            daftarBarang[jumlahBarang] = br;
-            jumlahBarang+=1;
-        } else {
-            System.out.println("!!Penambahan gagal. Maksimum barang tercapai");
-        }
-       
+        daftarBarang.add(br);
     }
     
     public Barang getBarang(int idx){
-        return daftarBarang[idx];
+        return daftarBarang.get(idx);
     }
  
 }

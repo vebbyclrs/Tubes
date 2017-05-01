@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package Driver;
-import Controller.ControllerHomePage;
-import View.HomePage;
+import Controller.*;
+import View.*;
 import Model.Aplikasi;
 /**
  *
@@ -14,6 +14,6 @@ import Model.Aplikasi;
 public class Driver {
     public static void main(String[] args) {
         Aplikasi app =  new Aplikasi();
-        new ControllerHomePage(app);
+        new ControllerLoginForm();
     }
 }

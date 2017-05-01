@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -104,6 +105,56 @@ public class DatabaseConnection
         }        
         
     }
+    public void savePetugas (Petugas p) {
+        try{
+            String query = "insert into petugas (idpetugas, nama, alamat, nohp, email, password)"
+                + " values ('"+p.getIdPetugas()+
+                "','"+p.getNama()+
+                "','"+p.getAlamat()+
+                "','"+p.getNoHp()+
+                "','"+p.getEmail()+
+                "','"+p.getPass()+"');";
+            boolean berhasil = manipulate(query);
+            if (! berhasil) {
+                throw new IllegalArgumentException("Terjadi kesalahan saat save petugas");
+            }
+        } catch (Exception e){
+            throw new IllegalArgumentException("Terjadi kesalahan saat save petugas");
+        }
+    }
+    
+    public void saveGudang (Gudang g) {
+        try {
+            String query = "insert into gudang (idgudang,lokasi,jumBarang) "
+                        + "values ('" + g.getId() +"',"
+                        + "'"+g.getLokasi() + "',"
+                        + "'"+ g.getJumBarang()+ "');";
+            boolean berhasil = manipulate(query);
+            if (! berhasil) {
+                throw new IllegalArgumentException("Terjadi kesalahan saat save barang");
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Terjadi kesalahan saat save barang");
+        }
+    }
+    
+    public void saveBarangPenyedia (Barang b, int idPenyedia) {
+        try {
+            String query = "insert into barang (idbarang,nama,harga,Stock,idpenyedia) "
+                + "values ('" + b.getId() + "','"
+                + b.getNama() + "','"
+                + b.getHarga() + "','"
+                + b.getStock() + "','"
+                + idPenyedia +"');";
+            boolean berhasil = manipulate(query);
+            if (! berhasil) {
+                throw new IllegalArgumentException("terjadi kesalahan saat save barang ke penyedia");
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("terjadi kesalahan saat save barang ke penyedia");
+        }
+    }
+    
     
     
     

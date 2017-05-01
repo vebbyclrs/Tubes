@@ -32,7 +32,9 @@ public class Aplikasi {
 
     public Aplikasi() {
         db = new DatabaseConnection();
+        db.connect();
         loadPetugas();
+        
     }
 
     /*Area untuk HomePage*/
@@ -44,7 +46,26 @@ public class Aplikasi {
         daftarPenyedia.add(p);
         db.disconnect();
     }
+    
+    public void addBarangPenyedia(Barang b, int idPenyedia) /*Done*/ {
+        db.connect();
+        db.saveBarangPenyedia(b, idPenyedia);        
+        db.disconnect();
+    }
+   
+    public void addGudang(Gudang b)/*done*/ {
+        db.connect();
+        db.saveGudang(b);
+        db.disconnect();
+    }
 
+    public void addPetugas(Petugas b) /*done*/ {
+        db.connect();
+        db.savePetugas(b);
+        db.disconnect();
+    }
+
+    
     public ArrayList<Penyedia> loadPenyedia() /*DONE, = loadPenyedia*/ {
         ArrayList<Penyedia> arrPenyedia = new ArrayList<>();
         db.connect();
@@ -60,19 +81,6 @@ public class Aplikasi {
         }
         db.disconnect();
         return arrPenyedia;
-    }
-
-    public boolean addBarangPenyedia(Barang b, int idPenyedia) /*Done*/ {
-        db.connect();
-        boolean berhasil = db.manipulate("insert into barang (idbarang,nama,harga,Stock,idpenyedia) "
-                + "values ('" + b.getId() + "','"
-                + b.getNama() + "','"
-                + b.getHarga() + "','"
-                + b.getStock() + "','"
-                + idPenyedia +"');");
-        
-        db.disconnect();
-        return berhasil;
     }
 
     public ArrayList<Barang> loadBarang() /*Done*/ {
@@ -91,17 +99,6 @@ public class Aplikasi {
         return arrBarang; 
     }
 
-    public boolean addGudang(Gudang b)/*done*/ {
-        db.connect();
-        boolean berhasil = db.manipulate(
-                "insert into gudang (idgudang,lokasi,jumBarang) "
-                        + "values ('" + b.getId() +"',"
-                        + "'"+b.getLokasi() + "',"
-                        + "'"+ b.getJumBarang()+ "');");
-        db.disconnect();
-        return berhasil;
-    }
-
     public ArrayList<Gudang> loadGudang() /*done*/ {
         db.connect();
         ArrayList<Gudang> arrGudang = new ArrayList<>();
@@ -116,19 +113,6 @@ public class Aplikasi {
         }
         db.disconnect();
         return arrGudang;
-    }
-
-    public boolean addPetugas(Petugas b) /*done*/ {
-        db.connect();
-        boolean berhasil = db.manipulate("insert into petugas (idpetugas, nama, alamat, nohp, email, password)"
-                + " values ('"+b.getIdPetugas()+
-                "','"+b.getNama()+
-                "','"+b.getAlamat()+
-                "','"+b.getNoHp()+
-                "','"+b.getEmail()+
-                "','"+b.getPass()+"');");
-        db.disconnect();
-        return berhasil;
     }
 
     public ArrayList<Petugas> loadPetugas() /*done*/{
@@ -203,13 +187,21 @@ public class Aplikasi {
     }
     
     public Petugas getPetugas (String idPetugas) {
-        String query = "select * from petugas where idpetugas='"+idPetugas+"'"
-        ResultSet rs = db.getData(query);
-        for (Petugas p : daftarPetugas) {
-            if () {
-                
+        //dipake buat login
+        for (Petugas p: daftarPetugas) {
+            if (idPetugas.equals(p.getIdPetugas())) {
+                return p;
             }
         }
+        return null;
+    }
+    public Petugas getPetugasByEmail (String email) {
+        for (Petugas p : daftarPetugas) {
+            if (email.equals(p.getEmail())) {
+                return p;
+            }
+        }
+        return null;
     }
 }
     /**

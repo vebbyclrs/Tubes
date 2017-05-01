@@ -5,42 +5,38 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author TESASET
  */
 public class Gudang {
-    private Barang[]  daftarBarang;
-    private int jumBarang = 0;
+    private ArrayList<Barang>  daftarBarang;
     private String id;
     private String lokasi;
 
     public Gudang(String id, String lokasi) {
         this.id=id;
         this.lokasi=lokasi;
-        daftarBarang = new Barang [20];
+        daftarBarang = new ArrayList<>();
     }
 
     //overloading
     public Gudang() {
-        daftarBarang=new Barang[20];
+        daftarBarang=new ArrayList<>();
     }
     
     public void addBarang (Barang br){
-        if(jumBarang<20){
-            daftarBarang[jumBarang] = br;
-            jumBarang +=1;
-        }else {
-            System.out.println("Tidak bisa menambahkan barang ke gudang");
-        }
+        daftarBarang.add(br);
     }
 
     public Barang getBarang(int idx){
-        return daftarBarang[idx];
+        return daftarBarang.get(idx);
     }
     
     public int getJumBarang() {
-        return jumBarang;
+        return daftarBarang.size();
     }
 
     public String getId() {

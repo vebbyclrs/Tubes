@@ -2,6 +2,7 @@ package View;
 
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -34,21 +35,22 @@ public class LoginForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        tfUserName = new javax.swing.JTextField();
+        tfEmail = new javax.swing.JTextField();
         btnDaftar = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
-        password = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        tfPassword = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel1.setText("WELCOME");
 
-        tfUserName.setForeground(new java.awt.Color(153, 153, 153));
-        tfUserName.setText("Username");
-        tfUserName.addActionListener(new java.awt.event.ActionListener() {
+        tfEmail.setForeground(new java.awt.Color(153, 153, 153));
+        tfEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfUserNameActionPerformed(evt);
+                tfEmailActionPerformed(evt);
             }
         });
 
@@ -61,25 +63,38 @@ public class LoginForm extends javax.swing.JFrame {
 
         btnLogin.setText("Login");
 
-        password.setText("jPasswordField1");
+        jLabel2.setText("Email");
+
+        jLabel3.setText("Password");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(btnDaftar)
-                .addGap(46, 46, 46)
-                .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(103, 103, 103))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel1)
-                    .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(179, 179, 179)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(35, 35, 35))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(13, 13, 13)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(tfPassword)
+                            .addComponent(tfEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                        .addGap(84, 84, 84))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnDaftar)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(103, 103, 103))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,9 +102,13 @@ public class LoginForm extends javax.swing.JFrame {
                 .addGap(66, 66, 66)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLogin)
@@ -102,15 +121,13 @@ public class LoginForm extends javax.swing.JFrame {
 
     
     private void btnDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarActionPerformed
-        // TODO add your handling code here:
-        SignUpPegawai daftar = new SignUpPegawai();
-        daftar.setVisible(true);
+        // TODO add your handling code here:       
     }//GEN-LAST:event_btnDaftarActionPerformed
 
-    private void tfUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUserNameActionPerformed
+    private void tfEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEmailActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_tfUserNameActionPerformed
+    }//GEN-LAST:event_tfEmailActionPerformed
     public void setActionListener(ActionListener a){
         btnLogin.addActionListener(a);
         btnDaftar.addActionListener(a);
@@ -129,12 +146,26 @@ public class LoginForm extends javax.swing.JFrame {
         return btnLogin;
     }
 
-    public String getjPasswordField1() {
-        return password.getText();
+    public JTextField getTfPassword() {
+        return tfPassword;
     }
 
-    public String getTfUserName() {
-        return tfUserName.getText();
+    public void setTfPassword(JTextField tfPassword) {
+        this.tfPassword = tfPassword;
+    }
+
+    public JTextField getTfEmail() {
+        return tfEmail;
+    }
+
+    public void setTfEmail(JTextField tfEmail) {
+        this.tfEmail = tfEmail;
+    }
+    
+    
+    
+    public void showMessage (String message)  {
+        JOptionPane.showMessageDialog(null, message);
     }
     
 
@@ -142,8 +173,10 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JButton btnDaftar;
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField password;
-    private javax.swing.JTextField tfUserName;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField tfEmail;
+    private javax.swing.JTextField tfPassword;
     // End of variables declaration//GEN-END:variables
 }
 

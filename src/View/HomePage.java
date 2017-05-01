@@ -7,6 +7,7 @@ package View;
 
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -44,6 +45,10 @@ public class HomePage extends javax.swing.JFrame {
     }
     public void setTfNoHP (String hp){
         tfNoHP.setText(hp);
+    }
+    
+    public void showMessage (String message)  {
+        JOptionPane.showMessageDialog(null, message);
     }
     
     public void addListener(ActionListener e){

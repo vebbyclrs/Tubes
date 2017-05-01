@@ -7,6 +7,7 @@ package View;
 
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -208,6 +209,9 @@ public class SignUpPegawai extends javax.swing.JFrame {
 
     public String getTfNoHp() {
         return tfNoHp.getText();
+    }
+    public void showMessage (String message)  {
+        JOptionPane.showMessageDialog(null, message);
     }
     
     
