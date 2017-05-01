@@ -27,7 +27,9 @@ public class HomePage extends javax.swing.JFrame {
     public JButton getBtnPenyedia() {
         return btnAddPenyedia;
     }
-    
+    public JButton getBtnBarang() {
+        return btnBarang;
+    }
     public String getTfAlamat() {
         return tfAlamat.getText();
     }
@@ -46,6 +48,52 @@ public class HomePage extends javax.swing.JFrame {
     public void setTfNoHP (String hp){
         tfNoHP.setText(hp);
     }
+
+    public void setTfIdPenyediaB(String IdPenyediaBarang) {
+        tfIdPenyediaB.setText(IdPenyediaBarang);
+    }
+
+    public String getTfIdPenyediaB() {
+        return tfIdPenyediaB.getText();
+    }
+
+    public void setTfIdBarang(String IdBarang) {
+        tfIdBarang.setText(IdBarang);
+    }
+
+    public String getTfIdBarang() {
+        return tfIdBarang.getText();
+    }
+
+    public void setTfNamaBarang(String NamaBarang) {
+        tfNamaBarang.setText(NamaBarang);
+    }
+
+    public String getTfNamaBarang() {
+        return tfNamaBarang.getText();
+    }
+
+    public void setTfStock(String Stock) {
+        tfStock.setText(Stock);
+    }
+
+    public String getTfStock() {
+        return tfStock.getText();
+    }
+
+    public void setTfHarga(String harga) {
+        tfHarga.setText(harga);
+    }
+
+    public String getTfHarga() {
+        return tfHarga.getText();
+    }
+    
+    
+    
+    
+    
+    
     
     public void showMessage (String message)  {
         JOptionPane.showMessageDialog(null, message);
