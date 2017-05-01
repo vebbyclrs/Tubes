@@ -32,7 +32,7 @@ public class Aplikasi {
 
     public Aplikasi() {
         db = new DatabaseConnection();
-        db.connect();
+//        db.connect();
         loadPetugas();
         
     }
@@ -117,7 +117,7 @@ public class Aplikasi {
 
     public ArrayList<Petugas> loadPetugas() /*done*/{
         db.connect();
-        ArrayList<Petugas> arrPetugas = new ArrayList<>();
+        daftarPetugas = new ArrayList<>();
         ResultSet rs = db.getData("select idpetugas, nama, alamat, noHp, email, password from Petugas");
         try {
            while (rs.next()) {
@@ -128,80 +128,49 @@ public class Aplikasi {
                     rs.getString("nohp"),
                     rs.getString("email"),
                     rs.getString("password"));
-            arrPetugas.add(p);
+            daftarPetugas.add(p);
             }   
         } catch (Exception e) {
             e.printStackTrace();
         }
         db.disconnect();
-        return arrPetugas;
+        return daftarPetugas;
     }
 
-//    public Penyedia getPenyedia(int idPenyedia) /*BELOM*/{
-//        /*
-//        alur: fungsi akan mengeluarkan semua data penyedia dengan id=idpenyedia
-//        data penyedia tsb disimpan dalam objek p
-//        kemudian akan dicari dalam tabel barang: barang mana saja yang punya barang.idpenyedia=p.idpenyedia
-//          yang kemudian akan di simpan dalam resultsetBarang
-//        isi dari result set barang tadi akan di simpan ke dalam array penyedia.barang[] untuk kemudian ditampilkan
-//        */
-//        db.connect();
-//        Penyedia p = new Penyedia();
-//        ResultSet rs = db.getData("Select * from Penyedia where nim = '"+idPenyedia+"'");
-//        try {
-//            if (rs.first()) {
-//                p.setAlamat(rs.getString("alamat"));
-//                p.setId(rs.getInt("idpenyedia"));
-//                p.setNama(rs.getString("nama"));
-//                p.setNoHp(rs.getString("nohp"));
-//                
-//                ResultSet rsBarang = db.getData("select idbarang, idpenyedia, id, nama, harga, stock "
-//                        + "where idpenyedia='"+idPenyedia+"'");
-//                
-//                while (rsBarang.next()) {
-//                    if (p.getJumlahBarang()<=20) { 
-//                        Barang b = new Barang(rs.getString("idbarang"), 
-//                                rs.getString("nama"),
-//                                rs.getDouble("harga"), 
-//                                rs.getInt("stock"));
-//                        p.addBarang(b);                            
-//                    }
-//                }
-//            }
-//            
-//        } catch (Exception e) {
-//        }
-//        
-//        
-//        db.disconnect();
-//        return p;
-//    }
-//    
     public Barang getBarang (String  idBarang) {
+        db.connect();
         for (Barang brg : daftarBarang) {
             if (brg.getId().equals(idBarang)) { 
                 return brg;
             }
         }
+        db.disconnect();
         return null;
+        
     }
     
     public Petugas getPetugas (String idPetugas) {
         //dipake buat login
+        db.connect();
         for (Petugas p: daftarPetugas) {
             if (idPetugas.equals(p.getIdPetugas())) {
                 return p;
             }
         }
+        db.disconnect();
         return null;
     }
+    
     public Petugas getPetugasByEmail (String email) {
+        db.connect();
         for (Petugas p : daftarPetugas) {
             if (email.equals(p.getEmail())) {
                 return p;
             }
         }
+        db.disconnect();
         return null;
+        
     }
 }
     /**

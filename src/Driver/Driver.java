@@ -13,7 +13,7 @@ import Model.Aplikasi;
  */
 public class Driver {
     public static void main(String[] args) {
-        Aplikasi app =  new Aplikasi();
+//        Aplikasi app =  new Aplikasi();
         new ControllerLoginForm();
     }
 }
