@@ -59,7 +59,6 @@ public class HomePage extends javax.swing.JFrame {
     public void reset () {
         tfAlamat.setText("");
         tfHarga.setText("");
-        tfHargaG.setText("");
         tfIdBarang.setText("");
         tfIdBarangG.setText("");
         tfIdG.setText("");
@@ -69,7 +68,6 @@ public class HomePage extends javax.swing.JFrame {
         tfLokasiGudang.setText("");
         tfNama.setText("");
         tfNamaBarang.setText("");
-        tfNamaBarangG.setText("");
         tfNoHP.setText("");
         tfStock.setText("");
         tfStockG.setText("");
@@ -138,14 +136,10 @@ public class HomePage extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         tfIdGudangB = new javax.swing.JTextField();
         tfIdBarangG = new javax.swing.JTextField();
-        tfNamaBarangG = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         tfStockG = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        tfHargaG = new javax.swing.JTextField();
         btnBarang2 = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         txtDetailGudang = new javax.swing.JTextArea();
@@ -473,21 +467,13 @@ public class HomePage extends javax.swing.JFrame {
 
         tfIdBarangG.setText("tfIdGudangG");
 
-        tfNamaBarangG.setText("tfNamaBarangG");
-
         jLabel14.setText("ID Gudang");
 
         jLabel15.setText("ID Barang");
 
-        jLabel16.setText("Nama barang");
-
         tfStockG.setText("tfStockG");
 
         jLabel17.setText("Stock");
-
-        jLabel18.setText("Harga");
-
-        tfHargaG.setText("tfHargaG");
 
         btnBarang2.setText("Tambah Barang");
 
@@ -497,30 +483,22 @@ public class HomePage extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel16))
                     .addComponent(jLabel15)
                     .addComponent(jLabel14)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel18))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfStockG)
-                    .addComponent(tfNamaBarangG)
-                    .addComponent(tfIdBarangG)
-                    .addComponent(tfIdGudangB)
-                    .addComponent(tfHargaG, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(btnBarang2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBarang2)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(tfStockG)
+                        .addComponent(tfIdBarangG, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                        .addComponent(tfIdGudangB)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfIdGudangB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
@@ -530,19 +508,11 @@ public class HomePage extends javax.swing.JFrame {
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfNamaBarangG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfStockG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
-                    .addComponent(tfHargaG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBarang2)
-                .addGap(45, 45, 45))
+                .addGap(104, 104, 104))
         );
 
         txtDetailGudang.setColumns(20);
@@ -555,7 +525,7 @@ public class HomePage extends javax.swing.JFrame {
             panelGudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGudangLayout.createSequentialGroup()
                 .addGroup(panelGudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(panelGudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -576,7 +546,7 @@ public class HomePage extends javax.swing.JFrame {
                                 .addGap(14, 14, 14)
                                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelGudangLayout.createSequentialGroup()
                                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -663,9 +633,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -695,7 +663,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabPenyedia;
     private javax.swing.JTextField tfAlamat;
     private javax.swing.JTextField tfHarga;
-    private javax.swing.JTextField tfHargaG;
     private javax.swing.JTextField tfIdBarang;
     private javax.swing.JTextField tfIdBarangG;
     private javax.swing.JTextField tfIdG;
@@ -705,7 +672,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JTextField tfLokasiGudang;
     private javax.swing.JTextField tfNama;
     private javax.swing.JTextField tfNamaBarang;
-    private javax.swing.JTextField tfNamaBarangG;
     private javax.swing.JTextField tfNoHP;
     private javax.swing.JTextField tfStock;
     private javax.swing.JTextField tfStockG;

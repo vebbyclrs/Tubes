@@ -23,7 +23,8 @@ import javax.swing.JOptionPane;
 public class ControllerHomePage implements ActionListener, KeyListener{
     Aplikasi model;
     HomePage view;
-    public ControllerHomePage(Aplikasi model){
+    
+    public ControllerHomePage(){
         this.model = model;
         view = new HomePage();
         view.setVisible(true);

@@ -20,10 +20,12 @@ import sun.security.pkcs11.Secmod;
 public class ControllerLoginForm implements ActionListener{
 
     private LoginForm loginFrame;
+    private ControllerSignUp daftarFrame;
+    private ControllerHomePage homeFrame;
     private Aplikasi apps;
 
     public ControllerLoginForm() {
-        new Aplikasi();
+        apps = new Aplikasi();
         loginFrame = new LoginForm();
         loginFrame.setLocationRelativeTo(null);
         loginFrame.setVisible(true);
@@ -32,7 +34,7 @@ public class ControllerLoginForm implements ActionListener{
     
     private void btnDaftarActionPerformed (ActionEvent ae) {
         loginFrame.dispose();
-//        new ControllerSignUp();
+        new ControllerSignUp();
     }
     
     @Override
@@ -49,12 +51,13 @@ public class ControllerLoginForm implements ActionListener{
                 if (p==null) {
                     loginFrame.showMessage("Email salah");
                 } else {
-                     if (p.getPass().equals(password)) {
+                     if (! p.getPass().equals(password)) {
                          loginFrame.showMessage("Password salah");
-                     } else {
-                            new ControllerSignUp();
-                            loginFrame.dispose();
-                            loginFrame.showMessage("Udah masuk");
+                     } else { //masuk gan
+//                            daftarFrame = new ControllerSignUp();
+                            loginFrame.setVisible(false);
+                            homeFrame = new ControllerHomePage();
+                            
                      }
                 }
                 
