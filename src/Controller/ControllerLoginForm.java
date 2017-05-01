@@ -32,7 +32,7 @@ public class ControllerLoginForm implements ActionListener{
     
     private void btnDaftarActionPerformed (ActionEvent ae) {
         loginFrame.dispose();
-        new ControllerSignUp();
+//        new ControllerSignUp();
     }
     
     @Override

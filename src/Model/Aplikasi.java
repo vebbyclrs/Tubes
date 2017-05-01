@@ -118,7 +118,7 @@ public class Aplikasi {
     public ArrayList<Petugas> loadPetugas() /*done*/{
         db.connect();
         ArrayList<Petugas> arrPetugas = new ArrayList<>();
-        ResultSet rs = db.getData("select idpetugas, nama, alamat, noHp, email, password");
+        ResultSet rs = db.getData("select idpetugas, nama, alamat, noHp, email, password from Petugas");
         try {
            while (rs.next()) {
             Petugas p = new Petugas(
