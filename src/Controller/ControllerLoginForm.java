@@ -57,7 +57,6 @@ public class ControllerLoginForm implements ActionListener{
 //                            daftarFrame = new ControllerSignUp();
                             loginFrame.setVisible(false);
                             homeFrame = new ControllerHomePage();
-                            
                      }
                 }
                 
