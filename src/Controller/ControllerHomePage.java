@@ -43,7 +43,15 @@ public class ControllerHomePage implements ActionListener, KeyListener{
             p.setAlamat(view.getTfAlamat());
             p.setNoHp(view.getTfNoHP());
             model.addPenyedia(p);
+        }else if(source.equals(view.getBtnPenyedia())){
+            Barang brg = new Barang();
+            brg.setNama(view.getTfNamaBarang());
+            brg.setId(view.getTfIdBarang());
+            brg.setStock(Integer.parseInt(view.getTfStock()));
+            brg.setHarga(Double.parseDouble(view.getTfHarga()));
+            model.addBarangPenyedia(brg,Integer.parseInt(view.getTfIdPenyediaB()));
         }
+            
         //eji masih bingung error terus sok di bantu
     }
 
