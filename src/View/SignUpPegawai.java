@@ -47,7 +47,7 @@ public class SignUpPegawai extends javax.swing.JFrame {
         tfNoHp = new javax.swing.JTextField();
         tfEmail = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
-        btnSignUp = new javax.swing.JButton();
+        btnDaftar = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -81,7 +81,7 @@ public class SignUpPegawai extends javax.swing.JFrame {
 
         password.setText("jPasswordField1");
 
-        btnSignUp.setText("Daftar");
+        btnDaftar.setText("Daftar");
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +108,7 @@ public class SignUpPegawai extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnSignUp)
+                        .addComponent(btnDaftar)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tfNama)
                             .addComponent(tfId)
@@ -149,7 +149,7 @@ public class SignUpPegawai extends javax.swing.JFrame {
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSignUp)
+                    .addComponent(btnDaftar)
                     .addComponent(btnBack))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -168,15 +168,12 @@ public class SignUpPegawai extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        LoginForm login = new LoginForm();
-        login.setVisible(true);
-        this.dispose();
                 
     }//GEN-LAST:event_btnBackActionPerformed
 
     public void setActionListener(ActionListener a){
         btnBack.addActionListener(a);
-        btnSignUp.addActionListener(a);
+        btnDaftar.addActionListener(a);
     }
 
     public JButton getBtnBack() {
@@ -184,7 +181,7 @@ public class SignUpPegawai extends javax.swing.JFrame {
     }
 
     public JButton getBtnSignUp() {
-        return btnSignUp;
+        return btnDaftar;
     }
 
     public String getPassword() {
@@ -214,6 +211,11 @@ public class SignUpPegawai extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, message);
     }
     
+    public void showMessage(String message, String title, int type)
+    {
+        JOptionPane.showMessageDialog(null, message, title, type);
+    }
+    
     
     /**
      * @param args the command line arguments
@@ -222,7 +224,7 @@ public class SignUpPegawai extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnSignUp;
+    private javax.swing.JButton btnDaftar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -7,8 +7,12 @@ package View;
 
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -24,12 +28,22 @@ public class HomePage extends javax.swing.JFrame {
     }
      //Untuk yang Tambah Penyedia di Tab Data Barang Penyedia
 
+    public JComboBox<String> getCbIdPenyedia() {
+        return cbIdPenyedia;
+    }
+
+    
+    
     public JButton getBtnPenyedia() {
         return btnAddPenyedia;
     }
+
     public JButton getBtnBarang() {
         return btnBarang;
     }
+    
+    
+    
     public String getTfAlamat() {
         return tfAlamat.getText();
     }
@@ -49,14 +63,13 @@ public class HomePage extends javax.swing.JFrame {
         tfNoHP.setText(hp);
     }
 
-    public void setTfIdPenyediaB(String IdPenyediaBarang) {
-        tfIdPenyediaB.setText(IdPenyediaBarang);
-    }
 
-    public String getTfIdPenyediaB() {
-        return tfIdPenyediaB.getText();
+    public String getTfIdP() {
+        return tfIdP.getText();
     }
-
+  
+    
+    
     public void setTfIdBarang(String IdBarang) {
         tfIdBarang.setText(IdBarang);
     }
@@ -88,6 +101,23 @@ public class HomePage extends javax.swing.JFrame {
     public String getTfHarga() {
         return tfHarga.getText();
     }
+
+    public JList<String> getListPenyedia() {
+        return listPenyedia;
+    }
+
+    public JList<String> getListGudang() {
+        return listGudang;
+    }
+
+    public JTable getTabBarangP() {
+        return tabBarangP;
+    }
+
+    public JTable getTabBarangG() {
+        return tabBarangG;
+    }
+    
     
     
     
@@ -102,17 +132,23 @@ public class HomePage extends javax.swing.JFrame {
     public void addListener(ActionListener e){
         btnAddPenyedia.addActionListener(e);
         btnBarang.addActionListener(e);
+        
+    }
+    
+    public void addListSelection(ListSelectionListener ls)
+    {
+        listPenyedia.addListSelectionListener(ls);
     }
     
     public void reset () {
         tfAlamat.setText("");
         tfHarga.setText("");
         tfIdBarang.setText("");
-        tfIdBarangG.setText("");
+        
         tfIdG.setText("");
-        tfIdGudangB.setText("");
+        
         tfIdP.setText("");
-        tfIdPenyediaB.setText("");
+        
         tfLokasiGudang.setText("");
         tfNama.setText("");
         tfNamaBarang.setText("");
@@ -157,8 +193,6 @@ public class HomePage extends javax.swing.JFrame {
         tfAlamat = new javax.swing.JTextField();
         tfNoHP = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        tfIdPenyediaB = new javax.swing.JTextField();
-        tfIdBarang = new javax.swing.JTextField();
         tfNamaBarang = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -168,6 +202,8 @@ public class HomePage extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         tfHarga = new javax.swing.JTextField();
         btnBarang = new javax.swing.JButton();
+        cbIdPenyedia = new javax.swing.JComboBox<>();
+        tfIdBarang = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtDetailPny = new javax.swing.JTextArea();
         panelGudang = new javax.swing.JPanel();
@@ -182,15 +218,17 @@ public class HomePage extends javax.swing.JFrame {
         btnAddGudang = new javax.swing.JButton();
         tfLokasiGudang = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        tfIdGudangB = new javax.swing.JTextField();
-        tfIdBarangG = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         tfStockG = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         btnBarang2 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        cbIdBarangG = new javax.swing.JComboBox<>();
         jScrollPane7 = new javax.swing.JScrollPane();
         txtDetailGudang = new javax.swing.JTextArea();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        taDaftarBarang = new javax.swing.JTextArea();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -207,15 +245,7 @@ public class HomePage extends javax.swing.JFrame {
             new String [] {
                 "ID Barang", "Nama Barang", "Stock", "Harga"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(tabBarangP);
 
         listPenyedia.setModel(new javax.swing.AbstractListModel<String>() {
@@ -223,12 +253,16 @@ public class HomePage extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        listPenyedia.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listPenyediaValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(listPenyedia);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Tambah penyedia barang"));
 
         tfIdP.setEditable(false);
-        tfIdP.setText("tfIdP");
         tfIdP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfIdPActionPerformed(evt);
@@ -250,21 +284,23 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        tfNama.setText("tfNama");
         tfNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNamaActionPerformed(evt);
             }
         });
 
-        tfAlamat.setText("tfAlamat");
         tfAlamat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfAlamatActionPerformed(evt);
             }
         });
 
-        tfNoHP.setText("tfNoHP");
+        tfNoHP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNoHPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -308,18 +344,12 @@ public class HomePage extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfNoHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnAddPenyedia)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Tambah barang pada penyedia"));
-
-        tfIdPenyediaB.setText("tfIdPenyediaB");
-
-        tfIdBarang.setText("tfIdBarang");
-
-        tfNamaBarang.setText("tfNamaBarang");
 
         jLabel6.setText("ID Penyedia");
 
@@ -327,15 +357,19 @@ public class HomePage extends javax.swing.JFrame {
 
         jLabel7.setText("Nama barang");
 
-        tfStock.setText("tfStock");
-
         jLabel8.setText("Stock");
 
         jLabel9.setText("Harga");
 
-        tfHarga.setText("tfHarga");
+        tfHarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfHargaActionPerformed(evt);
+            }
+        });
 
         btnBarang.setText("Tambah Barang");
+
+        cbIdPenyedia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -350,17 +384,17 @@ public class HomePage extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfStock, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                    .addComponent(tfStock)
                     .addComponent(tfNamaBarang)
-                    .addComponent(tfIdBarang)
-                    .addComponent(tfIdPenyediaB)
-                    .addComponent(tfHarga))
-                .addContainerGap())
+                    .addComponent(tfHarga)
+                    .addComponent(cbIdPenyedia, 0, 148, Short.MAX_VALUE)
+                    .addComponent(tfIdBarang))
+                .addGap(18, 18, 18))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(btnBarang)
@@ -369,14 +403,14 @@ public class HomePage extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfIdPenyediaB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbIdPenyedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfIdBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(tfIdBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -386,9 +420,9 @@ public class HomePage extends javax.swing.JFrame {
                     .addComponent(tfStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(tfHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addComponent(btnBarang)
                 .addGap(45, 45, 45))
@@ -470,8 +504,6 @@ public class HomePage extends javax.swing.JFrame {
 
         btnAddGudang.setText("Tambah Gudang");
 
-        tfLokasiGudang.setText("tfLokasiGudang");
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -511,19 +543,17 @@ public class HomePage extends javax.swing.JFrame {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Tambahkan barang pada gudang"));
 
-        tfIdGudangB.setText("tfIdGudangB");
-
-        tfIdBarangG.setText("tfIdGudangG");
-
         jLabel14.setText("ID Gudang");
 
         jLabel15.setText("ID Barang");
 
-        tfStockG.setText("tfStockG");
-
         jLabel17.setText("Stock");
 
         btnBarang2.setText("Tambah Barang");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbIdBarangG.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -534,26 +564,28 @@ public class HomePage extends javax.swing.JFrame {
                     .addComponent(jLabel15)
                     .addComponent(jLabel14)
                     .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBarang2)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tfStockG)
-                        .addComponent(tfIdBarangG, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                        .addComponent(tfIdGudangB)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnBarang2)
+                            .addComponent(tfStockG, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbIdBarangG, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfIdGudangB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
+                    .addComponent(jLabel14)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfIdBarangG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
+                    .addComponent(jLabel15)
+                    .addComponent(cbIdBarangG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfStockG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -567,17 +599,25 @@ public class HomePage extends javax.swing.JFrame {
         txtDetailGudang.setRows(5);
         jScrollPane7.setViewportView(txtDetailGudang);
 
+        taDaftarBarang.setColumns(20);
+        taDaftarBarang.setRows(5);
+        jScrollPane8.setViewportView(taDaftarBarang);
+
         javax.swing.GroupLayout panelGudangLayout = new javax.swing.GroupLayout(panelGudang);
         panelGudang.setLayout(panelGudangLayout);
         panelGudangLayout.setHorizontalGroup(
             panelGudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGudangLayout.createSequentialGroup()
                 .addGroup(panelGudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                    .addGroup(panelGudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelGudangLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelGudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -589,17 +629,17 @@ public class HomePage extends javax.swing.JFrame {
                 .addGroup(panelGudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5)
                     .addGroup(panelGudangLayout.createSequentialGroup()
-                        .addGroup(panelGudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelGudangLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelGudangLayout.createSequentialGroup()
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 45, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 45, Short.MAX_VALUE))
+                    .addGroup(panelGudangLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(jScrollPane8)))
                 .addContainerGap())
         );
 
@@ -635,47 +675,32 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddPenyediaActionPerformed
 
+    private void tfHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfHargaActionPerformed
+
+    private void tfNoHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNoHPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNoHPActionPerformed
+
+    private void listPenyediaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listPenyediaValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listPenyediaValueChanged
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HomePage().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddGudang;
     private javax.swing.JButton btnAddPenyedia;
     private javax.swing.JButton btnBarang;
     private javax.swing.JButton btnBarang2;
+    private javax.swing.JComboBox<String> cbIdBarangG;
+    private javax.swing.JComboBox<String> cbIdPenyedia;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -701,22 +726,21 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JList<String> listGudang;
     private javax.swing.JList<String> listPenyedia;
     private javax.swing.JPanel panelGudang;
     private javax.swing.JPanel panelPenyedia;
+    private javax.swing.JTextArea taDaftarBarang;
     private javax.swing.JTable tabBarangG;
     private javax.swing.JTable tabBarangP;
     private javax.swing.JTabbedPane tabPenyedia;
     private javax.swing.JTextField tfAlamat;
     private javax.swing.JTextField tfHarga;
     private javax.swing.JTextField tfIdBarang;
-    private javax.swing.JTextField tfIdBarangG;
     private javax.swing.JTextField tfIdG;
-    private javax.swing.JTextField tfIdGudangB;
     private javax.swing.JTextField tfIdP;
-    private javax.swing.JTextField tfIdPenyediaB;
     private javax.swing.JTextField tfLokasiGudang;
     private javax.swing.JTextField tfNama;
     private javax.swing.JTextField tfNamaBarang;

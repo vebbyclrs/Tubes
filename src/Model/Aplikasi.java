@@ -30,27 +30,49 @@ public class Aplikasi {
     ArrayList<Petugas> daftarPetugas;
     DatabaseConnection db;
 
+    public ArrayList<Penyedia> getDaftarPenyedia() {
+        return daftarPenyedia;
+    }
+    
+    
+
     public Aplikasi() {
         db = new DatabaseConnection();
 //        db.connect();
         loadPetugas();
+        loadPenyedia();
+        loadBarang();
+        loadGudang();
         
     }
 
-    /*Area untuk HomePage*/
-    public void addPenyedia(Penyedia p) /*DONE*/ {
-        //tidak ada kemungkinan bahwa idPenyedia sudah ada karena
-        //saat menyimpan data, id increment
-        db.connect();
-        db.savePenyedia(p);
-        daftarPenyedia.add(p);
-        db.disconnect();
+    public ArrayList<Barang> getDaftarBarang() {
+        return daftarBarang;
+    }
+
+    public ArrayList<Petugas> getDaftarPetugas() {
+        return daftarPetugas;
     }
     
-    public void addBarangPenyedia(Barang b, int idPenyedia) /*Done*/ {
+    
+
+    /*Area untuk HomePage*/
+    public boolean addPenyedia(Penyedia p) /*DONE*/ {
+        //tidak ada kemungkinan bahwa idPenyedia sudah ada karena
+        //saat menyimpan data, id increment
+        boolean berhasil;
         db.connect();
-        db.saveBarangPenyedia(b, idPenyedia);        
+        berhasil = db.savePenyedia(p);
+        daftarPenyedia.add(p);
         db.disconnect();
+        return berhasil;
+    }
+    
+    public boolean addBarangPenyedia(Barang b, int idPenyedia) /*Done*/ {
+        db.connect();
+        boolean berhasil = db.saveBarangPenyedia(b, idPenyedia);        
+        db.disconnect();
+        return berhasil;
     }
    
     public void addGudang(Gudang b)/*done*/ {
@@ -59,45 +81,64 @@ public class Aplikasi {
         db.disconnect();
     }
 
-    public void addPetugas(Petugas b) /*done*/ {
+    public boolean addPetugas(Petugas b) /*done*/ {
         db.connect();
-        db.savePetugas(b);
+        boolean berhasil = db.savePetugas(b);
         db.disconnect();
+        return berhasil;
     }
 
     
     public ArrayList<Penyedia> loadPenyedia() /*DONE, = loadPenyedia*/ {
-        ArrayList<Penyedia> arrPenyedia = new ArrayList<>();
+        daftarPenyedia = new ArrayList<>();
         db.connect();
         String query = "select idpenyedia,nama,alamat,nohp,jumbarang from penyedia";
         ResultSet rs = db.getData(query);
         try {
             while (rs.next()) {
                 Penyedia p = new Penyedia(rs.getInt("idpenyedia"), rs.getString("nama"), rs.getString("alamat"), rs.getString("nohp"));
-                arrPenyedia.add(p);
+                daftarPenyedia.add(p);
             }
         } catch (Exception e) {
             throw new IllegalArgumentException("terjadi kesalahan saat load penyedia");
         }
         db.disconnect();
-        return arrPenyedia;
+        return daftarPenyedia;
     }
 
     public ArrayList<Barang> loadBarang() /*Done*/ {
         db.connect();
-        ArrayList<Barang> arrBarang = new ArrayList<>();
+        daftarBarang = new ArrayList<>();
         ResultSet rs = db.getData("select idBarang, nama, harga, stock from barang");
         try {
             while (rs.next()) {
                 Barang b = new Barang(rs.getString("idBarang"), rs.getString("nama"),rs.getDouble("harga"), rs.getInt("stock"));
-                arrBarang.add(b);
+                daftarBarang.add(b);
             }
         } catch (Exception e) {
             throw new IllegalArgumentException("Terjadi kesalahan saat load barang");
         }
         db.disconnect();
-        return arrBarang; 
+        return daftarBarang; 
     }
+    
+    public ArrayList<Barang> loadBarang(String idPenyedia) /*Done*/ {
+        db.connect();
+        daftarBarang = new ArrayList<>();
+        ResultSet rs = db.getData("select idBarang, nama, harga, stock from barang where idpenyedia='"+idPenyedia+"'");
+        try {
+            while (rs.next()) {
+                Barang b = new Barang(rs.getString("idBarang"), rs.getString("nama"),rs.getDouble("harga"), rs.getInt("stock"));
+                daftarBarang.add(b);
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Terjadi kesalahan saat load barang");
+        }
+        db.disconnect();
+        return daftarBarang; 
+    }
+    
+    
 
     public ArrayList<Gudang> loadGudang() /*done*/ {
         db.connect();

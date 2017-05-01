@@ -85,7 +85,8 @@ public class DatabaseConnection
         return rs;
     }
     
-    public void savePenyedia (Penyedia p) {
+    public boolean savePenyedia (Penyedia p) {
+        boolean berhasil = false;
         try {
             String query = "insert into penyedia (idpenyedia,nama,alamat,nohp,jumbarang) "
                     + "values ('" + p.getId() + "','"
@@ -98,14 +99,16 @@ public class DatabaseConnection
             if (rs.next()) {
                 int generatedId = rs.getInt(1);
                 p.setId(generatedId);
-                
+            berhasil = true;
             }
         } catch (Exception e) {
             throw new IllegalArgumentException("Terjadi kesalahan saat menambahkan penyedia");
-        }        
+        }   
+        return berhasil;    
         
     }
-    public void savePetugas (Petugas p) {
+    public boolean savePetugas (Petugas p) {
+        boolean berhasil = false;
         try{
             String query = "insert into petugas (idpetugas, nama, alamat, nohp, email, password)"
                 + " values ('"+p.getIdPetugas()+
@@ -114,13 +117,15 @@ public class DatabaseConnection
                 "','"+p.getNoHp()+
                 "','"+p.getEmail()+
                 "','"+p.getPass()+"');";
-            boolean berhasil = manipulate(query);
+            berhasil = manipulate(query);
             if (! berhasil) {
                 throw new IllegalArgumentException("Terjadi kesalahan saat save petugas");
             }
         } catch (Exception e){
             throw new IllegalArgumentException("Terjadi kesalahan saat save petugas");
         }
+        
+        return berhasil;
     }
     
     public void saveGudang (Gudang g) {
@@ -138,7 +143,8 @@ public class DatabaseConnection
         }
     }
     
-    public void saveBarangPenyedia (Barang b, int idPenyedia) {
+    public boolean saveBarangPenyedia (Barang b, int idPenyedia) {
+        boolean berhasil = false;
         try {
             String query = "insert into barang (idbarang,nama,harga,Stock,idpenyedia) "
                 + "values ('" + b.getId() + "','"
@@ -146,13 +152,15 @@ public class DatabaseConnection
                 + b.getHarga() + "','"
                 + b.getStock() + "','"
                 + idPenyedia +"');";
-            boolean berhasil = manipulate(query);
+            berhasil = manipulate(query);
+            
             if (! berhasil) {
                 throw new IllegalArgumentException("terjadi kesalahan saat save barang ke penyedia");
             }
         } catch (Exception e) {
             throw new IllegalArgumentException("terjadi kesalahan saat save barang ke penyedia");
         }
+        return berhasil;
     }
     
     
