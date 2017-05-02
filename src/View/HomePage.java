@@ -7,6 +7,7 @@
 package View;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -187,6 +188,12 @@ public class HomePage extends javax.swing.JFrame {
     
     public void showMessage (String message)  {
         JOptionPane.showMessageDialog(null, message);
+    }
+    
+    public void addKeyListener(KeyListener e)
+    {
+        tabBarangP.addKeyListener(e);
+        tabBarangG.addKeyListener(e);
     }
     
     public void addListener(ActionListener e){
