@@ -20,18 +20,14 @@ import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 /**
  *
  * @author Endriawan
  */
-public class ControllerHomePage implements ActionListener, KeyListener, ListSelectionListener {
+public class ControllerHomePage implements ActionListener, KeyListener, ListSelectionListener{
     Aplikasi model;
     HomePage view;
     
@@ -61,22 +57,15 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
         String[] dataList = new String[arrP.size()];
         for (int i=0;i<arrP.size();i++) {
             Penyedia penyedia = arrP.get(i);
-             dataList[i] = penyedia.getId() +":"+ penyedia.getNama();
+             dataList[i] = penyedia.getId() +":"+ penyedia.getNama()+" ("+penyedia.getNoHp()+")";
             list.setListData(dataList);
         }
-    }
-    private void showDetailPenyedia (Penyedia p , JTextArea txtDetilPenyedia) {
-        txtDetilPenyedia.setText("Detail Penyedia:" + "\n" +
-                "Id Penyedia: " + p.getId() + "\n" +
-                "Nama: " + p.getNama() + "\n" +
-                "Alamat: " +  p.getAlamat() +"\n" +
-                "No hp : " + p.getNoHp() + "\n" +
-                "Jenis barang: "+ p.getJumlahBarang());
     }
     
     private void addBarangToTable(ArrayList<Barang> data, JTable table)
     {
         DefaultTableModel t = (DefaultTableModel) table.getModel();
+        
         t.setRowCount(0);
         for (Barang b : data) {
             String [] s = {b.getId(), b.getNama() , b.getStock()+"" , b.getHarga()+""}; //+"" ngejadiin string doang :P
@@ -93,7 +82,6 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
             String[] splited = value.split(":");
             model.loadBarang(splited[0]);
             addBarangToTable(model.getDaftarBarang(), view.getTabBarangP());
-            showDetailPenyedia(model.getPenyedia(Integer.parseInt(splited[0])), view.getTxtDetailPny());
         }
     }
     
@@ -111,7 +99,7 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
             p.setNoHp(view.getTfNoHP());
 
             if (model.addPenyedia(p)) {
-                view.showMessage("berhasil menambahkan penyedia");
+                view.showMessage("berhasil ditambahkan");
                 addPenyediaToComboBox(model.getDaftarPenyedia(), view.getCbIdPenyedia());
             }
         }else if(source.equals(view.getBtnBarang())){
@@ -121,24 +109,17 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
             brg.setStock(Integer.parseInt(view.getTfStock()));
             brg.setHarga(Double.parseDouble(view.getTfHarga()));
             if(model.addBarangPenyedia(brg,Integer.parseInt(view.getCbIdPenyedia().getSelectedItem().toString()))) {
-                view.showMessage("berhasil menambahkan barang penyedia");
-            } else {
-                view.showMessage("gagal menambahkan", "ERROR", JOptionPane.ERROR_MESSAGE);
+                view.showMessage("berhasil menambahkan");
             }
             //tambahin else buat error besok gan, bos udah ngantuk u,u
-        }else if (source.equals(view.getBtnAddGudang())) {
-//            Gudang g = new Gudang(view.getTfIdG().toString(), view.getTfLokasiGudang().toString());
-            Gudang gudang  = new Gudang();
-            gudang.setId(view.getTfIdG().toString() );
-            gudang.setLokasi(view.getTfLokasiGudang().toString());
-            if (model.addGudang(gudang)) {
-                view.showMessage("berhasil menambahkan gudang");
-            } else {
-                view.showMessage("gagal menambahkan", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
+           
+            
+
+
         }
+        //eji masih bingung error terus sok di bantu
     }
-    
+
     @Override
     public void keyTyped(KeyEvent e) {
         
@@ -146,22 +127,11 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
 
     @Override
     public void keyPressed(KeyEvent e) {
-//        if (e.getSource().equals(view.getTabBarangP())) {
-//            if (e.getKeyCode() == e.VK_DELETE) {
-//                view.showMessage("Harusnya ngedelete");
-//            }
-//        }
-//        else if (e.getSource().equals(view.getListPenyedia())) {
-            if (e.getKeyCode() == e.VK_DELETE) {
-                view.showMessage("Harusnya ngedelete(2)");
-            }
-//        }
-                
+        
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         
     }
-
 }

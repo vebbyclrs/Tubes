@@ -71,7 +71,7 @@ public class ControllerLoginForm implements ActionListener, KeyListener {
             btnDaftarActionPerformed(e);
         }
         if (e.getSource().equals(loginFrame.getBtnLogin())) {
-            btnLoginActionPerformed(e);            
+            btnLoginActionPerformed(e);
         }
 
 //            Petugas p = apps.getPetugasByEmail(email);

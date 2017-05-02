@@ -70,25 +70,15 @@ public class Aplikasi {
     
     public boolean addBarangPenyedia(Barang b, int idPenyedia) /*Done*/ {
         db.connect();
-        boolean berhasil = db.saveBarangPenyedia(b, idPenyedia);     
-        daftarBarang.add(b);
-        for (Penyedia p : daftarPenyedia) {
-            if (p.getId() == idPenyedia) {
-                p.addBarang(b);
-            }
-        }
-        
+        boolean berhasil = db.saveBarangPenyedia(b, idPenyedia);        
         db.disconnect();
         return berhasil;
     }
    
-    public boolean addGudang(Gudang b)/*done*/ {
-        boolean berhasil = false;
+    public void addGudang(Gudang b)/*done*/ {
         db.connect();
-        berhasil = db.saveGudang(b);
-        System.out.println("\n berhasil:"+berhasil);
+        db.saveGudang(b);
         db.disconnect();
-        return berhasil;
     }
 
     public boolean addPetugas(Petugas b) /*done*/ {
@@ -186,15 +176,6 @@ public class Aplikasi {
         }
         db.disconnect();
         return daftarPetugas;
-    }
-    
-    public  Penyedia getPenyedia (int idPenyedia) {
-        for (Penyedia p : daftarPenyedia) {
-            if (p.getId() == idPenyedia) {
-                return p;
-            }
-        }
-        return null;
     }
 
     public Barang getBarang (String  idBarang) {
