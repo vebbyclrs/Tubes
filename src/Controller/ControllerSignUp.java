@@ -12,6 +12,7 @@ import View.SignUpPegawai;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.text.View;
 
 /**
@@ -37,7 +38,7 @@ public class ControllerSignUp implements ActionListener {
         daftarFrame.setVisible(false);
         loginCont = new ControllerLoginForm();
     }
-
+    
     public void btnDaftarActionPerformed(ActionEvent ae) {
         
         int idPetugas = 0;

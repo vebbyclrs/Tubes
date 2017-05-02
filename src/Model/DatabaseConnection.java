@@ -128,19 +128,21 @@ public class DatabaseConnection
         return berhasil;
     }
     
-    public void saveGudang (Gudang g) {
+    public boolean saveGudang (Gudang g) {
+        boolean berhasil = false;
         try {
             String query = "insert into gudang (idgudang,lokasi,jumBarang) "
                         + "values ('" + g.getId() +"',"
                         + "'"+g.getLokasi() + "',"
                         + "'"+ g.getJumBarang()+ "');";
-            boolean berhasil = manipulate(query);
+            berhasil = manipulate(query);
             if (! berhasil) {
                 throw new IllegalArgumentException("Terjadi kesalahan saat save barang");
             }
         } catch (Exception e) {
             throw new IllegalArgumentException("Terjadi kesalahan saat save barang");
         }
+        return berhasil;
     }
     
     public boolean saveBarangPenyedia (Barang b, int idPenyedia) {
@@ -162,8 +164,38 @@ public class DatabaseConnection
         }
         return berhasil;
     }
+    public boolean saveBarangGudang  (String idbarang, String idGudang) {
+        boolean berhasil = false;
+        Barang b;
+        
+        try {
+            String query = "update barang set idgudang='"+idGudang+"' where idbarang='"+idbarang+"'";
+            berhasil = manipulate(query);
+            
+            if (! berhasil) {
+                throw new IllegalArgumentException("terjadi kesalahan saat menambahkan barang ke gudang");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return berhasil;
+    }
     
-    
+//    public boolean deletePenyedia (Barang b, int idPenyedia) { //Kalo penyedia di hapus, barang juga di hapus
+//        boolean berhasil = false;
+//        try {
+//            String queryOnBarang = "delete * from barang where idPenyedia = '"+idPenyedia+"'; ";
+//            berhasil = manipulate(queryOnBarang);
+//            
+//            if (! berhasil) {
+//                throw new IllegalArgumentException("terjadi kesalahan saat save barang ke penyedia");
+//            }
+//        } catch (Exception e) {
+//            throw new IllegalArgumentException("terjadi kesalahan saat save barang ke penyedia");
+//        }
+//        return berhasil;
+//    }
+//    
     
     
 }
