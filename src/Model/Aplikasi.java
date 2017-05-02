@@ -186,6 +186,10 @@ public class Aplikasi {
         return daftarBarang; 
     }
     
+    //download ni https://nchc.dl.sourceforge.net/project/ireport/iReport/iReport-5.6.0/iReport-5.6.0-windows-installer.exe
+    //sama jre 7 http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jre-7u79-windows-x64.exe?AuthParam=1493749535_d2408faa8778521a6842a892b2096cd8
+    //karena ireport ga bsa jalan d JRE 8, harus 7
+    
     
     
     

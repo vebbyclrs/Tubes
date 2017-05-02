@@ -41,6 +41,7 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
         view.setVisible(true);
         view.addListener(this);
         view.addListSelection(this);
+        view.addKeyListener(this);
         addPenyediaToComboBox(model.getDaftarPenyedia(), view.getCbIdPenyedia());
         showListPenyedia(model.getDaftarPenyedia(), view.getListPenyedia());
         addGudangToComboBox(model.getDaftarGudang(), view.getCbIdGudangG());
@@ -192,6 +193,20 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
 
     @Override
     public void keyPressed(KeyEvent e) {
+        //tambahin yang tabel barang G
+        
+        
+        if (e.getSource().equals(view.getTabBarangP()))
+        {
+            if (e.getKeyCode() == KeyEvent.VK_DELETE)
+            {
+                //panggil delete
+                //ambil data dr table tahu kan ?
+                //nanti aku liat dari contoh kemaren :D
+                
+                view.showMessage("deleted !!!");
+            }
+        }
 
     }
 
