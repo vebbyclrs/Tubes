@@ -128,16 +128,17 @@ public class DatabaseConnection
         return berhasil;
     }
     
-    public void saveGudang (Gudang g) {
+    public boolean saveGudang (Gudang g) {
+        boolean berhasil;
         try {
-            String query = "insert into gudang (idgudang,lokasi,jumBarang) "
+            String query = "insert into gudang (idgudang,lokasi,jumbarang) "
                         + "values ('" + g.getId() +"',"
-                        + "'"+g.getLokasi() + "',"
-                        + "'"+ g.getJumBarang()+ "');";
-            boolean berhasil = manipulate(query);
+                        + "'"+g.getLokasi() +"',0)";
+            berhasil = manipulate(query);
             if (! berhasil) {
-                throw new IllegalArgumentException("Terjadi kesalahan saat save barang");
+                throw new IllegalArgumentException("Terjadi kesalahan saat save gudang");
             }
+            return berhasil;
         } catch (Exception e) {
             throw new IllegalArgumentException("Terjadi kesalahan saat save barang");
         }
