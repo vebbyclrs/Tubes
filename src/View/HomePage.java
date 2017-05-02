@@ -357,10 +357,13 @@ public class HomePage extends javax.swing.JFrame {
 
         jLabel7.setText("Nama barang");
 
+        tfStock.setText("0");
+
         jLabel8.setText("Stock");
 
         jLabel9.setText("Harga");
 
+        tfHarga.setText("0");
         tfHarga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfHargaActionPerformed(evt);

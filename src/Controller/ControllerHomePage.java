@@ -97,8 +97,11 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
             p.setId(0);
             p.setAlamat(view.getTfAlamat());
             p.setNoHp(view.getTfNoHP());
-
-            if (model.addPenyedia(p)) {
+            if (view.getTfNama().equals("")||view.getTfAlamat().equals("")
+                    ||view.getTfNoHP().equals("")){
+                JOptionPane.showMessageDialog(view,"field tidak boleh kosong!","terjadi kesalahan input", 0);
+            }
+            else if (model.addPenyedia(p)) {
                 view.showMessage("berhasil ditambahkan");
                 addPenyediaToComboBox(model.getDaftarPenyedia(), view.getCbIdPenyedia());
             }
@@ -108,7 +111,11 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
             brg.setId(view.getTfIdBarang());
             brg.setStock(Integer.parseInt(view.getTfStock()));
             brg.setHarga(Double.parseDouble(view.getTfHarga()));
-            if(model.addBarangPenyedia(brg,Integer.parseInt(view.getCbIdPenyedia().getSelectedItem().toString()))) {
+            if(view.getTfNamaBarang().equals("")||view.getTfIdBarang().equals("")
+                    ||view.getTfStock().equals("0")||view.getTfHarga().equals("0")){
+                JOptionPane.showMessageDialog(view,"field tidak bileh kosong", "terjadi kesalahan inputan", 0);
+            }
+          else if(model.addBarangPenyedia(brg,Integer.parseInt(view.getCbIdPenyedia().getSelectedItem().toString()))) {
                 view.showMessage("berhasil menambahkan");
             }
             //tambahin else buat error besok gan, bos udah ngantuk u,u
