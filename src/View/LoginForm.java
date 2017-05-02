@@ -48,7 +48,7 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel1.setText("WELCOME");
 
-        tfEmail.setText("vebbyclarissa@gmail.com");
+        tfEmail.setText("v@g.com");
         tfEmail.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         tfEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +69,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel3.setText("Password");
 
-        tfPassword.setText("telkomsel");
+        tfPassword.setText("pass");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

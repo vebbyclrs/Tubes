@@ -26,16 +26,28 @@ public class Aplikasi {
      */
 
     ArrayList<Penyedia> daftarPenyedia;
-    ArrayList<Barang> daftarBarang;
     ArrayList<Petugas> daftarPetugas;
+    ArrayList <Gudang> daftarGudang;
     DatabaseConnection db;
 
     public ArrayList<Penyedia> getDaftarPenyedia() {
         return daftarPenyedia;
     }
     
+    public ArrayList<Gudang> getDaftarGudang() {
+        return daftarGudang;
+    }
     
-
+    
+    public  Penyedia getPenyedia (int idPenyedia) {
+         for (Penyedia p : daftarPenyedia) {
+             if (p.getId() == idPenyedia) {
+                 return p;
+             }
+         }
+         return null;
+     }
+    
     public Aplikasi() {
         db = new DatabaseConnection();
 //        db.connect();
@@ -47,7 +59,7 @@ public class Aplikasi {
     }
 
     public ArrayList<Barang> getDaftarBarang() {
-        return daftarBarang;
+        return loadBarang();
     }
 
     public ArrayList<Petugas> getDaftarPetugas() {
@@ -70,20 +82,40 @@ public class Aplikasi {
     
     public boolean addBarangPenyedia(Barang b, int idPenyedia) /*Done*/ {
         db.connect();
-        boolean berhasil = db.saveBarangPenyedia(b, idPenyedia);        
+        boolean berhasil = db.saveBarangPenyedia(b, idPenyedia); 
+        for (Penyedia penyedia : daftarPenyedia) {
+            if (penyedia.getId() == idPenyedia) {
+                penyedia.addBarang(b);
+            }
+        }
         db.disconnect();
         return berhasil;
     }
    
-    public void addGudang(Gudang b)/*done*/ {
+    
+    public boolean addGudang(Gudang b)/*done*/ {
+        boolean berhasil = false;
         db.connect();
-        db.saveGudang(b);
+        berhasil = db.saveGudang(b);
+        daftarGudang.add(b);
         db.disconnect();
+        return berhasil;
     }
 
     public boolean addPetugas(Petugas b) /*done*/ {
         db.connect();
         boolean berhasil = db.savePetugas(b);
+        db.disconnect();
+        return berhasil;
+    }
+    public boolean addBarangToGudang(String idBarang, String idGudang) {
+        db.connect();
+        boolean berhasil = db.saveBarangGudang(idBarang, idGudang);
+        for (Gudang gudang : daftarGudang) {
+            if (gudang.getId().equals(idGudang)) {
+                gudang.addBarang(getBarang(idBarang)); //masukin barang ke array barang di gudang
+            }
+        }
         db.disconnect();
         return berhasil;
     }
@@ -106,25 +138,25 @@ public class Aplikasi {
         return daftarPenyedia;
     }
 
-    public ArrayList<Barang> loadBarang() /*Done*/ {
+    public ArrayList<Gudang> loadGudang() /*Done*/ {
         db.connect();
-        daftarBarang = new ArrayList<>();
-        ResultSet rs = db.getData("select idBarang, nama, harga, stock from barang");
+        daftarGudang = new ArrayList<>();
+        ResultSet rs = db.getData("select * from gudang");
         try {
             while (rs.next()) {
-                Barang b = new Barang(rs.getString("idBarang"), rs.getString("nama"),rs.getDouble("harga"), rs.getInt("stock"));
-                daftarBarang.add(b);
+                Gudang g = new Gudang(rs.getString("idgudang"), rs.getString("lokasi"));
+                daftarGudang.add(g);
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException("Terjadi kesalahan saat load barang");
+            throw new IllegalArgumentException("Terjadi kesalahan saat load gudang");
         }
         db.disconnect();
-        return daftarBarang; 
+        return daftarGudang; 
     }
     
-    public ArrayList<Barang> loadBarang(String idPenyedia) /*Done*/ {
+    public ArrayList<Barang> loadBarangByPenyedia(String idPenyedia) /*Done*/ {
         db.connect();
-        daftarBarang = new ArrayList<>();
+        ArrayList<Barang> daftarBarang = new ArrayList<>();
         ResultSet rs = db.getData("select idBarang, nama, harga, stock from barang where idpenyedia='"+idPenyedia+"'");
         try {
             while (rs.next()) {
@@ -138,23 +170,41 @@ public class Aplikasi {
         return daftarBarang; 
     }
     
-    
-
-    public ArrayList<Gudang> loadGudang() /*done*/ {
+    public ArrayList<Barang> loadBarangByGudang(String idGudang) /*Done*/ {
         db.connect();
-        ArrayList<Gudang> arrGudang = new ArrayList<>();
-        ResultSet rs = db.getData("select idgudang,lokasi,jumbarang from gudang");
+        ArrayList<Barang> daftarBarang = new ArrayList<>();
+        ResultSet rs = db.getData("select idBarang, nama, harga, stock from barang where idgudang='"+idGudang+"'");
         try {
             while (rs.next()) {
-                Gudang g = new Gudang(rs.getString("idgudang"), "lokasi");
-                arrGudang.add(g);
+                Barang b = new Barang(rs.getString("idBarang"), rs.getString("nama"),rs.getDouble("harga"), rs.getInt("stock"));
+                daftarBarang.add(b);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("Terjadi kesalahan saat load barang");
         }
         db.disconnect();
-        return arrGudang;
+        return daftarBarang; 
     }
+    
+    
+    
+    
+    public ArrayList<Barang> loadBarang() /*Done*/ {
+        db.connect();
+        ArrayList<Barang> daftarBarang = new ArrayList<>();
+        ResultSet rs = db.getData("select idBarang, nama, harga, stock from barang ");
+        try {
+            while (rs.next()) {
+                Barang b = new Barang(rs.getString("idBarang"), rs.getString("nama"),rs.getDouble("harga"), rs.getInt("stock"));
+                daftarBarang.add(b);
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Terjadi kesalahan saat load barang");
+        }
+        db.disconnect();
+        return daftarBarang; 
+    }
+    
 
     public ArrayList<Petugas> loadPetugas() /*done*/{
         db.connect();
@@ -180,6 +230,7 @@ public class Aplikasi {
 
     public Barang getBarang (String  idBarang) {
         db.connect();
+        ArrayList<Barang> daftarBarang = new ArrayList<>();
         for (Barang brg : daftarBarang) {
             if (brg.getId().equals(idBarang)) { 
                 return brg;
