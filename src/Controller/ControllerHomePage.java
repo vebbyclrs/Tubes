@@ -112,6 +112,7 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
             ArrayList<Barang> daftarBarang = model.loadBarangByPenyedia(splited[0]);
             addBarangToTable(daftarBarang, view.getTabBarangP());
             showDetailPenyedia(model.getPenyedia(Integer.parseInt(splited[0])), view.getTxtDetailPny());
+            
         } else if (e.getSource().equals(view.getListGudang())) {
             String value = view.getListGudang().getSelectedValue();
             String[] splited = value.split(" ");
@@ -146,8 +147,10 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
             } else if (model.addPenyedia(p)) {
                 view.showMessage("berhasil ditambahkan");
                 addPenyediaToComboBox(model.getDaftarPenyedia(), view.getCbIdPenyedia());
+                showListPenyedia(model.getDaftarPenyedia(), view.getListPenyedia());
+                view.reset();
             }
-            showListPenyedia(model.getDaftarPenyedia(), view.getListPenyedia());
+//            showListPenyedia(model.getDaftarPenyedia(), view.getListPenyedia());
         } else if (source.equals(view.getBtnBarang())) {
             Barang brg = new Barang();
             brg.setNama(view.getTfNamaBarang());
@@ -159,8 +162,10 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
                 JOptionPane.showMessageDialog(view, "field tidak bileh kosong", "terjadi kesalahan inputan", 0);
             } else if (model.addBarangPenyedia(brg, Integer.parseInt(view.getCbIdPenyedia().getSelectedItem().toString()))) {
                 view.showMessage("berhasil menambahkan");
+                view.reset();
 ////Pengennya tabelnya langsung ngerefresh////////                
                 addBarangToTable(model.loadBarang(), view.getTabAllBarang());
+                addBarangToComboBox(model.loadBarang(), view.getCbIdBarangG());
             }
 
             //tambahin else buat error besok gan, bos udah ngantuk u,u
@@ -169,6 +174,10 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
             Gudang g = new Gudang(view.getTfIdG(), view.getTfLokasiGudang());
             if (model.addGudang(g)) {
                 view.showMessage("berhasil menambahkan gudang");
+                addGudangToComboBox(model.getDaftarGudang(), view.getCbIdGudangG());
+                showListGudang(model.getDaftarGudang(), view.getListGudang());
+                view.reset();
+                //REFRESH LIST GUDANG
             } else {
                 view.showMessage("gagal menambahkan", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
@@ -178,6 +187,7 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
 //            view.showMessage(idGudang,idBarang, JOptionPane.INFORMATION_MESSAGE);
             if (model.addBarangToGudang(idBarang, idGudang)) {
                 view.showMessage("berhasil menambahkan barang ke gudang");
+                view.reset();
             } else {
                 view.showMessage("gagal menambahkan", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
@@ -193,21 +203,36 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
 
     @Override
     public void keyPressed(KeyEvent e) {
-        //tambahin yang tabel barang G
-        
-        
         if (e.getSource().equals(view.getTabBarangP()))
         {
-            if (e.getKeyCode() == KeyEvent.VK_DELETE)
+            if (e.getKeyCode() == KeyEvent.VK_DELETE)//delete barang di penyedia
             {
-                //panggil delete
-                //ambil data dr table tahu kan ?
-                //nanti aku liat dari contoh kemaren :D
-                
-                view.showMessage("deleted !!!");
+                String idBarang = view.getTabBarangP().getModel().getValueAt(view.getTabBarangP().getSelectedRow(), 0).toString();
+                boolean berhasil=model.deleteBarangP(idBarang);
+                if (berhasil) {
+                    view.showMessage("deleted !!!");
+                    addBarangToTable(model.loadBarang(), view.getTabAllBarang());
+                    addBarangToComboBox(model.loadBarang(), view.getCbIdBarangG());
+                } else {
+                    view.showMessage("Gagal menghapus barang", "Errorr delete barang", JOptionPane.ERROR_MESSAGE); 
+                }
             }
         }
-
+        else if (e.getSource().equals(view.getTabBarangG()))
+        {
+            if (e.getKeyCode() == KeyEvent.VK_DELETE)//delete barang di penyedia
+            {
+                String idBarang = view.getTabBarangG().getModel().getValueAt(view.getTabBarangG().getSelectedRow(), 0).toString();
+                boolean berhasil = model.deleteBarangG(idBarang);
+                if (berhasil) {
+                    view.showMessage("deleted !!!");
+                    addBarangToTable(model.loadBarang(), view.getTabAllBarang());
+                    addBarangToComboBox(model.loadBarang(), view.getCbIdBarangG());
+                } else {
+                    view.showMessage("Gagal menghapus barang", "Errorr delete barang", JOptionPane.ERROR_MESSAGE); 
+                }
+            }
+        }
     }
 
     @Override

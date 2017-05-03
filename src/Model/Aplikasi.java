@@ -119,6 +119,44 @@ public class Aplikasi {
         db.disconnect();
         return berhasil;
     }
+    
+    public boolean deleteBarangP(String idBarang)  {
+        db.connect();
+        boolean berhasil = db.manipulate("delete from barang where idbarang='"+idBarang+"'");
+        if (berhasil) { //hapus data barang yang di array barang penyedia z
+            for (Penyedia penyedia : daftarPenyedia) {
+                for (Barang barang : penyedia.getArrBarang()) {
+                    if (barang.getId().equals(idBarang)) {
+                        penyedia.getArrBarang().remove(barang); //delete barang yang di array barang penyedia
+                        break;
+                    }
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("Gagal melakukan delete barang");
+        }
+        db.disconnect();
+        return berhasil;
+    }
+    public boolean deleteBarangG(String idBarang) {
+        db.connect();
+        boolean berhasil = db.manipulate("update barang set idgudang=null where (idbarang='"+idBarang+"');");
+        if (berhasil) {
+            for (Gudang gudang : daftarGudang) {
+                for (Barang barang : gudang.getArrBarangG()) {
+                    if (barang.getId().equals(idBarang)) {
+                        gudang.getArrBarangG().remove(barang);
+                        break;
+                    }
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("terjadi kesalahan saat delete barang");
+        }
+        
+        db.disconnect();
+        return berhasil;
+    }
 
     
     public ArrayList<Penyedia> loadPenyedia() /*DONE, = loadPenyedia*/ {
