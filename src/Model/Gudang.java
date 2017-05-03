@@ -54,4 +54,7 @@ public class Gudang {
     public void setLokasi(String lokasi) {
         this.lokasi = lokasi;
     }
+    public ArrayList<Barang> getArrBarangG () {
+        return this.daftarBarang;
+    }
 }

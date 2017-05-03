@@ -47,5 +47,8 @@ public class Penyedia extends Manusia {
     public Barang getBarang(int idx){
         return daftarBarang.get(idx);
     }
+    public ArrayList<Barang> getArrBarang() {
+        return daftarBarang;
+    }
  
 }
