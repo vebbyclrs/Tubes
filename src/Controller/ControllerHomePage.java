@@ -104,8 +104,8 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
     }
 
     @Override
-    public void valueChanged(ListSelectionEvent e) {
-        if (e.getSource().equals(view.getListPenyedia())) {
+    public void valueChanged(ListSelectionEvent e) { //Saat pilih sesuatu di list, akan melakukan:
+        if (e.getSource().equals(view.getListPenyedia())) { //kalau yang di select di list penyedia
             //id:asdasd
             String value = view.getListPenyedia().getSelectedValue();
             String[] splited = value.split(":");
@@ -113,7 +113,7 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
             addBarangToTable(daftarBarang, view.getTabBarangP());
             showDetailPenyedia(model.getPenyedia(Integer.parseInt(splited[0])), view.getTxtDetailPny());
             
-        } else if (e.getSource().equals(view.getListGudang())) {
+        } else if (e.getSource().equals(view.getListGudang())) { //kalau yang di select di list gudang
             String value = view.getListGudang().getSelectedValue();
             String[] splited = value.split(" ");
             
@@ -123,7 +123,7 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
     }
 
     private void showDetailPenyedia(Penyedia p, JTextArea txtDetilPenyedia) {
-        txtDetilPenyedia.setText("Detail Penyedia:" + "\n"
+        txtDetilPenyedia.setText("Detail Penyedia:" + "\n"+"\n"
                 + "Id Penyedia: " + p.getId() + "\n"
                 + "Nama: " + p.getNama() + "\n"
                 + "Alamat: " + p.getAlamat() + "\n"
@@ -132,10 +132,10 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) { //respon button
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Object source = e.getSource();
-        if (source.equals(view.getBtnPenyedia())) {
+        if (source.equals(view.getBtnPenyedia())) { //tambah penyeda
             Penyedia p = new Penyedia();
             p.setNama(view.getTfNama());
             p.setId(0);
@@ -203,7 +203,7 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getSource().equals(view.getTabBarangP()))
+        if (e.getSource().equals(view.getTabBarangP())) //pencet deletenya di tabel barang penyedia
         {
             if (e.getKeyCode() == KeyEvent.VK_DELETE)//delete barang di penyedia
             {
@@ -218,7 +218,7 @@ public class ControllerHomePage implements ActionListener, KeyListener, ListSele
                 }
             }
         }
-        else if (e.getSource().equals(view.getTabBarangG()))
+        else if (e.getSource().equals(view.getTabBarangG())) //pencet deletenya di tabel barang Gudang
         {
             if (e.getKeyCode() == KeyEvent.VK_DELETE)//delete barang di penyedia
             {
